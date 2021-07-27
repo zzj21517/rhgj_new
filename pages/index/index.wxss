@@ -1,10 +1,13 @@
 .scroll_view_wrap{
+  position: absolute;
+  width: 100vw;
   height: 400rpx;
   background-image: linear-gradient(#FA8072, #FFF);
 }
 
 .scroll_view {
   padding-top: 32rpx;
+  padding-right: 32rpx;
   height: 60rpx;
   line-height: 60rpx;
   white-space: nowrap;
@@ -14,16 +17,22 @@
   padding: 0 20rpx;
   display: inline-block;
   color: #fff;
-  font-size: 24rpx;
+  font-size: 28rpx;
   transition: all .3s ease-in-out;
 }
+
+
 
 .scroll_view_item:nth-child(1){
   margin-left: 32rpx;
 }
 
+.scroll_view_item:last-child{
+  margin-right: 32rpx;
+}
+
 .scroll_view_active{
-  border-radius: 50rpx;
+  border-radius: 60rpx;
   background-color: #fff;
   color: #FA8072;
 }

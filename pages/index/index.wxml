@@ -2,8 +2,8 @@
 <view class="container home">
   <!-- 菜单 -->
   <view class="scroll_view_wrap">
-    <scroll-view class="scroll_view" scroll-x="true" enhanced="true" show-scrollbar="false" bindscroll="scroll" style="width: 100%">
+  </view>
+  <scroll-view class="scroll_view" scroll-x="true" enhanced="true" show-scrollbar="false" bindscroll="scroll" style="width: 100%">
       <view wx:for="{{menuList}}" wx:key="value" bindtap="handleSelectMenu" data-info="{{item}}" class="scroll_view_item {{item.value===curMenu?'scroll_view_active':''}}" >{{item.name}}</view>
     </scroll-view>
-  </view>
 </view>
