@@ -1,0 +1,36 @@
+.scroll_view_wrap{
+  height: 400rpx;
+  background-image: linear-gradient(#FA8072, #FFF);
+}
+
+.scroll_view {
+  padding-top: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  white-space: nowrap;
+}
+
+.scroll_view_item {
+  padding: 0 20rpx;
+  display: inline-block;
+  color: #fff;
+  font-size: 24rpx;
+  transition: all .3s ease-in-out;
+}
+
+.scroll_view_item:nth-child(1){
+  margin-left: 32rpx;
+}
+
+.scroll_view_active{
+  border-radius: 50rpx;
+  background-color: #fff;
+  color: #FA8072;
+}
+
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
