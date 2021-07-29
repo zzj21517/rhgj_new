@@ -1,0 +1,27 @@
+<view class="container my">
+  <view class="my_header">
+    <icon class="iconfont icon_myheader"></icon>
+    <view class="login_register">登录/注册</view>
+    <van-button bindtap="handleSwitch" wx:if="{{userType}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
+    <van-button bindtap="handleSwitch"  wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至客户</van-button>
+  </view>
+
+  <van-cell-group inset wx:if="{{userType}}" >
+    <van-cell title="酬劳托管" is-link />
+    <van-cell title="待付款" is-link />
+    <van-cell title="待评价" is-link />
+    <van-cell title="官方客服" is-link />
+    <van-cell title="邀请" is-link />
+  </van-cell-group>
+
+  <van-cell-group inset wx:else >
+    <van-cell title="券包" is-link />
+    <van-cell title="红包" is-link />
+    <van-cell title="会员" is-link />
+    <van-cell title="设置" is-link />
+    <van-cell title="邀请有赏" is-link />
+    <van-cell title="积分兑换" is-link />
+    <van-cell title="我的店铺" is-link />
+  </van-cell-group>
+
+</view>

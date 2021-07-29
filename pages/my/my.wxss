@@ -1,0 +1,22 @@
+.my_header{
+  position: relative;
+  margin-bottom: 32rpx;
+  padding-left: 60rpx;
+  height: 230rpx;
+  background-color: #FA8072;
+  display: flex;
+  align-items: center;
+}
+
+.login_register{
+  margin-left: 20rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.my_switch{
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+}

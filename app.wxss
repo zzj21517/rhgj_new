@@ -1,4 +1,25 @@
 /**app.wxss**/
 .container {
-
+  min-height: 100vh;
+  background-color: rgb(247,248,250);
 } 
+@font-face {
+  font-family: 'iconfont';  /* Project id 2707606 */
+  src: url('//at.alicdn.com/t/font_2707606_69vrcus33a.woff2?t=1627540462669') format('woff2'),
+       url('//at.alicdn.com/t/font_2707606_69vrcus33a.woff?t=1627540462669') format('woff'),
+       url('//at.alicdn.com/t/font_2707606_69vrcus33a.ttf?t=1627540462669') format('truetype');
+}
+
+.iconfont{
+  font-family: "iconfont"!important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.icon_myheader::before{
+  content:'\e607';
+  color: #fff;
+  font-size: 128rpx;
+}

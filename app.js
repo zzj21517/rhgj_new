@@ -21,7 +21,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
+    userInfo: {
+      userType:1,
+    },
     statusBarHeight:0,
   }
 })
