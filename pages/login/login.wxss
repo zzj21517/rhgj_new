@@ -1,0 +1,23 @@
+/* pages/login/login.wxss */
+.login {}
+
+.logo_wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.login_logo {
+  margin-top: 30vh;
+  width: 128rpx;
+  height: 128rpx;
+}
+
+.login_btn {
+  padding-top: 5vh;
+  display: flex;
+  align-items: center;
+}
+
+.login_btn button {
+  width: 90vw;
+}

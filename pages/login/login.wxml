@@ -1,0 +1,8 @@
+<!--pages/login/login.wxml-->
+<view class="login container">
+  <view class="logo_wrap">
+    <image class="login_logo" src="../../static/images/rhjglogo.jpeg"></image>
+  </view>
+  <van-button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" color='#FA8072' class="login_btn">微信用户一键登录
+  </van-button>
+</view>

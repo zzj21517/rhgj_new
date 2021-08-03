@@ -3,7 +3,20 @@
   <!-- 菜单 -->
   <view class="scroll_view_wrap">
   </view>
-  <scroll-view class="scroll_view" scroll-x="true" enhanced="true" show-scrollbar="false" bindscroll="scroll" style="width: 100%">
+  <!-- <scroll-view class="scroll_view" scroll-x="true" enhanced="true" show-scrollbar="false" bindscroll="scroll" style="width: 100%">
       <view wx:for="{{menuList}}" wx:key="value" bindtap="handleSelectMenu" data-info="{{item}}" class="scroll_view_item {{item.value===curMenu?'scroll_view_active':''}}" >{{item.name}}</view>
-    </scroll-view>
+    </scroll-view> -->
+
+    <mp-tabs 
+  tabs="{{tabs}}" 
+  activeTab="{{activeTab}}" 
+  swiperClass="weui-tabs-swiper"
+  bindtabclick="onTabCLick"
+  bindchange="onChange"
+  activeClass="tab-bar-title__selected"
+>
+  <!-- <block wx:for="{{tabs}}" wx:key="title">
+    <view class="tab-content" slot="tab-content-{{index}}" > {{item.title}} </view>
+  </block> -->
+</mp-tabs>
 </view>

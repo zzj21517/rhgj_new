@@ -1,42 +1,42 @@
-.scroll_view_wrap{
+.scroll_view_wrap {
   position: absolute;
   width: 100vw;
   height: 400rpx;
   background-image: linear-gradient(#FA8072, #FFF);
 }
+.weui-tabs-swiper {}
 
-.scroll_view {
-  padding-top: 32rpx;
+.weui-tabs-bar__content {
+  padding-top: 16rpx;
   padding-right: 32rpx;
   height: 60rpx;
   line-height: 60rpx;
-  white-space: nowrap;
-}
-
-.scroll_view_item {
-  padding: 0 20rpx;
-  display: inline-block;
-  color: #fff;
   font-size: 28rpx;
-  transition: all .3s ease-in-out;
 }
 
+.weui-tabs-bar__item {
+  background-color: unset !important;
+  color: #fff !important;
+}
 
-
-.scroll_view_item:nth-child(1){
+.weui-tabs-bar__item:nth-child(1) {
   margin-left: 32rpx;
 }
 
-.scroll_view_item:last-child{
+.weui-tabs-bar__item:last-child {
   margin-right: 32rpx;
 }
 
-.scroll_view_active{
+.weui-tabs-bar__title {
+  padding: 0 32rpx;
+}
+
+.tab-bar-title__selected {
+  border-bottom: none !important;
   border-radius: 60rpx;
   background-color: #fff;
   color: #FA8072;
 }
-
 
 ::-webkit-scrollbar {
   width: 0;

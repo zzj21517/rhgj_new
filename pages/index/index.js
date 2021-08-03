@@ -4,41 +4,41 @@ const app = getApp()
 
 Page({
   data: {
-    menuList:[
+    tabs:[
       {
-        name:'造价预算',
+        title:'造价预算',
         value:1,
       },
       {
-        name:'商务标书',
+        title:'商务标书',
         value:2,
       },
       {
-        name:'技术标书',
+        title:'技术标书',
         value:3,
       },
       {
-        name:'结算服务',
+        title:'结算服务',
         value:4,
       },
       {
-        name:'对审服务',
+        title:'对审服务',
         value:5,
       },
       {
-        name:'工程资料',
+        title:'工程资料',
         value:6,
       },
       {
-        name:'盖章服务',
+        title:'盖章服务',
         value:7,
       },
       {
-        name:'画图',
+        title:'画图',
         value:8,
       },
       {
-        name:'招标信息',
+        title:'招标信息',
         value:9
       }
     ],

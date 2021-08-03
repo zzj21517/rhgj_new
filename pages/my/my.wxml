@@ -1,7 +1,7 @@
 <view class="container my">
   <view class="my_header">
     <icon class="iconfont icon_myheader"></icon>
-    <view class="login_register">登录/注册</view>
+    <view class="login_register" bindtap="switchLogin" >登录/注册</view>
     <van-button bindtap="handleSwitch" wx:if="{{userType}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
     <van-button bindtap="handleSwitch"  wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至客户</van-button>
   </view>

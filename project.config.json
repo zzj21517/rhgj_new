@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -36,8 +36,8 @@
     "packNpmManually": true,
     "packNpmRelationList": [
       {
-        "packageJsonPath":"./package.json",
-        "miniprogramNpmDistDir":"./miniprogram_npm"
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram_npm"
       }
     ],
     "minifyWXSS": true,
