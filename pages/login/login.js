@@ -1,4 +1,7 @@
 // pages/login/login.js
+import {
+  request
+} from '../../utils/request'
 Page({
 
   /**
@@ -13,6 +16,22 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  getPhoneNumber(e) {
+    wx.login({
+      timeout: 2000,
+      success(res) {
+        console.log(res)
+        request('/register/wxlogin', {
+          'encryptedData': encodeURIComponent(e.detail.encryptedData),
+          'iv': e.detail.iv,
+          'code': res.code
+        },(data)=>{
+          console.log(data,'ddd')
+        })
+      }
+    })
   },
 
   /**
