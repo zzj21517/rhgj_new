@@ -21,3 +21,7 @@
 .login_btn button {
   width: 90vw;
 }
+
+.login_dialog {
+  padding: 32rpx;
+}

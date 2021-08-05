@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "登录",
   "usingComponents": {
-    "van-button":"@vant/weapp/button/index"
+    "van-button":"@vant/weapp/button/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }

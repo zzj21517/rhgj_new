@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showDialog: false,
   },
 
   /**
@@ -21,17 +21,29 @@ Page({
   getPhoneNumber(e) {
     wx.login({
       timeout: 2000,
-      success(res) {
+      success: (res) => {
         console.log(res)
         request('/register/wxlogin', {
-          'encryptedData': encodeURIComponent(e.detail.encryptedData),
+          'encryptedData': e.detail.encryptedData,
           'iv': e.detail.iv,
           'code': res.code
-        },(data)=>{
-          console.log(data,'ddd')
+        }, (data) => {
+          this.setData({
+            showDialog: true
+          })
         })
       }
     })
+  },
+
+  getUserInfo(event) {
+    console.log(event.detail);
+  },
+
+  onClose() {
+    this.setData({
+      showDialog: false
+    });
   },
 
   /**
