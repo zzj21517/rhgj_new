@@ -25,7 +25,7 @@ function request(url, data, callback, errorText, failback, loading) {
       //请求成功的处理
       (loading || true) && wx.hideLoading();
       if (res.data.code == 200) {
-        callback(res.data.result);
+        callback(res.data);
       } else {
         console.log('errorText' + (errorText || '请求异常'))
         wx.showToast({

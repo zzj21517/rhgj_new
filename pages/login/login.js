@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app=getApp()
 import {
   request
 } from '../../utils/request'
@@ -8,41 +9,99 @@ Page({
    * 页面的初始数据
    */
   data: {
+    code: '',
+    userguid: '', //用户id
     showDialog: false,
+    userFlag: "1",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  getPhoneNumber(e) {
     wx.login({
       timeout: 2000,
       success: (res) => {
-        console.log(res)
-        request('/register/wxlogin', {
-          'encryptedData': e.detail.encryptedData,
-          'iv': e.detail.iv,
-          'code': res.code
-        }, (data) => {
-          this.setData({
-            showDialog: true
-          })
+        this.setData({
+          code: res.code
         })
       }
     })
   },
 
+  getPhoneNumber(e) {
+    this.reqLogin({
+      'encryptedData': e.detail.encryptedData,
+      'iv': e.detail.iv,
+      code: this.data.code,
+      userFlag: Number(this.data.userFlag),
+    })
+  },
+
+  reqLogin(loginInfo) {
+    request('/register/wxlogin', loginInfo, (data) => {
+      console.log(data, 'ddd')
+      this.setData({
+        userguid: data.userguid,
+        showDialog: true
+      })
+      app.globalData.userInfo=data
+    })
+  },
+
+
+  reqUpdateUserInfo(userInfo) {
+    request('/peopleinfo/newUpdateUserInfo', {
+      userguid: this.data.userguid,
+      ...userInfo
+    }, (data) => {
+      app.globalData.userInfo=data
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    })
+  },
+
   getUserInfo(event) {
     console.log(event.detail);
+    const userInfo = event.detail.userInfo
+    const {
+      nickName,
+      avatarUrl,
+      gender,
+      country,
+      province,
+      city
+    } = userInfo
+    this.reqUpdateUserInfo({
+      nickName,
+      avatarUrl,
+      gender,
+      country,
+      province,
+      city
+    })
   },
 
   onClose() {
     this.setData({
       showDialog: false
+    });
+  },
+
+
+  onFlagChange(event) {
+    this.setData({
+      userFlag: event.detail,
+    });
+  },
+
+  onFlagClick(event) {
+    const {
+      name
+    } = event.currentTarget.dataset;
+    this.setData({
+      userFlag: name,
     });
   },
 

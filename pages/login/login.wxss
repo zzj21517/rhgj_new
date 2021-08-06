@@ -7,9 +7,13 @@
 }
 
 .login_logo {
-  margin-top: 30vh;
+  margin-top: 25vh;
   width: 128rpx;
   height: 128rpx;
+}
+
+.login_flag{
+  padding: 32rpx 32rpx 0rpx 32rpx;
 }
 
 .login_btn {

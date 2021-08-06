@@ -7,25 +7,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userType:app.globalData.userInfo.userType
+    userInfo: {},
+    userFlag: app.globalData.userInfo.userFlag
   },
 
   // 切换客户<=>工程师
-  handleSwitch(e){
-    let userInfo=app.globalData.userInfo
-    userInfo.userType=userInfo.userType?0:1
-    app.globalData.userInfo={...userInfo}
+  handleSwitch(e) {
+    let userInfo = app.globalData.userInfo
+    userInfo.userFlag = userInfo.userFlag ? 0 : 1
+    app.globalData.userInfo = {
+      ...userInfo
+    }
     this.setData({
-      userType:userInfo.userType
-    },()=>{
-      console.log(this.data.userType,'ee')
+      userFlag: userInfo.userFlag
+    }, () => {
+      console.log(this.data.userFlag, 'ee')
     })
   },
 
   // 跳转登录
-  switchLogin(){
+  switchLogin() {
     wx.navigateTo({
-      url:'/pages/login/login'
+      url: '/pages/login/login'
     })
   },
 
@@ -47,7 +50,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(app.globalData)
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**

@@ -3,11 +3,23 @@
   <view class="logo_wrap">
     <image class="login_logo" src="../../static/images/rhjglogo.jpeg"></image>
   </view>
+  <view class="login_flag" >
+    <van-radio-group value="{{ userFlag }}" bind:change="onFlagChange">
+      <van-cell-group>
+        <van-cell title="客户注册" clickable data-name="1" bind:click="onFlagClick">
+          <van-radio slot="right-icon" name="1" checked-color="#FA8072" />
+        </van-cell>
+        <van-cell title="工程师注册" clickable data-name="0" bind:click="onFlagClick">
+          <van-radio slot="right-icon" name="0" checked-color="#FA8072" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
   <van-button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" color='#FA8072' class="login_btn">微信用户一键登录
   </van-button>
 
   <van-dialog use-slot title="用户信息" show="{{ showDialog }}" show-cancel-button confirm-button-open-type="getUserInfo"
     bind:close="onClose" bind:getuserinfo="getUserInfo">
-    <view class="login_dialog" >需要开启用户信息授权,是否同意?</view>
+    <view class="login_dialog">需要开启用户信息授权,是否同意?</view>
   </van-dialog>
 </view>

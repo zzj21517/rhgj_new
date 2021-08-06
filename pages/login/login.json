@@ -2,6 +2,10 @@
   "navigationBarTitleText": "登录",
   "usingComponents": {
     "van-button":"@vant/weapp/button/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-cell":"@vant/weapp/cell/index",
+    "van-cell-group":"@vant/weapp/cell-group/index"
   }
 }

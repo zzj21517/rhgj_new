@@ -1,12 +1,13 @@
 <view class="container my">
   <view class="my_header">
-    <icon class="iconfont icon_myheader"></icon>
+    <icon wx:if="{{!userInfo.avatarUrl}}" class="iconfont icon_myheader"></icon>
+    <image wx:else src="{{userInfo.avatarUrl}}" ></image>
     <view class="login_register" bindtap="switchLogin" >登录/注册</view>
-    <van-button bindtap="handleSwitch" wx:if="{{userType}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
+    <van-button bindtap="handleSwitch" wx:if="{{userFlag}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
     <van-button bindtap="handleSwitch"  wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至客户</van-button>
   </view>
 
-  <van-cell-group inset wx:if="{{userType}}" >
+  <van-cell-group inset wx:if="{{userFlag}}" >
     <van-cell title="酬劳托管" is-link />
     <van-cell title="待付款" is-link />
     <van-cell title="待评价" is-link />

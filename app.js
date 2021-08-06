@@ -22,7 +22,7 @@ App({
   },
   globalData: {
     userInfo: {
-      userType:1,
+      userFlag:1,
     },
     statusBarHeight:0,
   }
