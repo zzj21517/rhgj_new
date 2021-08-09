@@ -1,5 +1,5 @@
 // pages/login/login.js
-const app=getApp()
+const app = getApp()
 import {
   request
 } from '../../utils/request'
@@ -41,11 +41,22 @@ Page({
   reqLogin(loginInfo) {
     request('/register/wxlogin', loginInfo, (data) => {
       console.log(data, 'ddd')
-      this.setData({
-        userguid: data.userguid,
-        showDialog: true
+      let userInfo = data.userInfo || {}
+      wx.setStorage({
+        key: "userInfo",
+        data: userInfo
       })
-      app.globalData.userInfo=data
+      app.globalData.userInfo = userInfo
+      if (!userInfo.nickName) {
+        this.setData({
+          userguid: userInfo.rowGuid,
+          showDialog: true
+        })
+      } else {
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
+      }
     })
   },
 
@@ -55,7 +66,11 @@ Page({
       userguid: this.data.userguid,
       ...userInfo
     }, (data) => {
-      app.globalData.userInfo=data
+      wx.setStorage({
+        key: "userInfo",
+        data: data.userInfo
+      })
+      app.globalData.userInfo = data.userInfo
       wx.switchTab({
         url: '/pages/my/my',
       })

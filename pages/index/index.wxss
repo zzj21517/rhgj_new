@@ -4,7 +4,9 @@
   height: 400rpx;
   background-image: linear-gradient(#FA8072, #FFF);
 }
-.weui-tabs-swiper {}
+.weui-tabs-swiper {
+  height: calc(100vh - 80rpx);
+}
 
 .weui-tabs-bar__content {
   padding-top: 16rpx;
@@ -42,4 +44,16 @@
   width: 0;
   height: 0;
   color: transparent;
+}
+
+.tab-content{
+  margin: 32rpx;
+  padding: 32rpx;
+  border-radius: 16rpx;
+  background-color: #fff;
+}
+
+.btn_fast button{
+  margin-top: 32rpx;
+  width: 100%;
 }

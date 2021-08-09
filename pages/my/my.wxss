@@ -20,3 +20,9 @@
   top: 32rpx;
   right: 32rpx;
 }
+
+.my_avatar{
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}

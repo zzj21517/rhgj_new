@@ -1,8 +1,9 @@
 <view class="container my">
   <view class="my_header">
     <icon wx:if="{{!userInfo.avatarUrl}}" class="iconfont icon_myheader"></icon>
-    <image wx:else src="{{userInfo.avatarUrl}}" ></image>
-    <view class="login_register" bindtap="switchLogin" >登录/注册</view>
+    <image class="my_avatar" wx:else src="{{userInfo.avatarUrl}}" ></image>
+    <view wx:if="{{!userInfo.nickName}}" class="login_register" bindtap="switchLogin" >登录/注册</view>
+    <view wx:else class="login_register" >{{userInfo.nickName}}</view>
     <van-button bindtap="handleSwitch" wx:if="{{userFlag}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
     <van-button bindtap="handleSwitch"  wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至客户</van-button>
   </view>
