@@ -7,7 +7,8 @@ import {
 
 Page({
   data: {
-    curRadio: 0, //当前选项
+    pid: 0,
+    cid: 0, //当前选项
     tabs: [],
     username: '',
     phone: '',
@@ -25,6 +26,23 @@ Page({
   onLoad() {
     console.log(app.globalData.statusBarHeight, '122')
     this.reqMenuList()
+  },
+
+  // 提交申请
+  handleApply() {
+    request('/peopleinfo/codeApply', {
+      "phone": this.data.phone,
+      userName: this.data.username,
+      verifyCode: this.data.sms,
+      pid: this.data.pid,
+      cid: this.data.cid,
+    }, (data) => {
+      wx.showToast({
+        title: data.msg,
+        icon: 'none',
+        duration: 1000
+      });
+    })
   },
 
   // 发送验证码
@@ -103,7 +121,8 @@ Page({
       if (Array.isArray(resList) && resList.length) {
         this.setData({
           tabs: resList,
-          curRadio: Array.isArray(resList[0].children) && resList[0].children.length ? resList[0].children[0].menuId : 0
+          pid: resList[0].menuId,
+          cid: Array.isArray(resList[0].children) && resList[0].children.length ? resList[0].children[0].menuId : 0
         })
       }
     })
@@ -129,11 +148,12 @@ Page({
       if (curIndex == index) {
         if (Array.isArray(tab.children) && tab.children.length) {
           this.setData({
-            curRadio: tab.children[0].menuId
+            pid: tab.children[0].parentId,
+            cid: tab.children[0].menuId
           })
         } else {
           this.setData({
-            curRadio: 0
+            cid: 0
           })
         }
       }
@@ -146,7 +166,7 @@ Page({
 
   onRadioChange(event) {
     this.setData({
-      userFlag: event.detail,
+      cid: event.detail,
     });
   },
 
@@ -155,7 +175,7 @@ Page({
       name
     } = event.currentTarget.dataset;
     this.setData({
-      userFlag: name,
+      cid: name,
     });
   },
 })

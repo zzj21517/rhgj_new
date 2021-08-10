@@ -6,10 +6,10 @@
   <view class="login_flag" >
     <van-radio-group value="{{ userFlag }}" bind:change="onFlagChange">
       <van-cell-group>
-        <van-cell title="客户注册" clickable data-name="1" bind:click="onFlagClick">
+        <van-cell title="客户" clickable data-name="1" bind:click="onFlagClick">
           <van-radio slot="right-icon" name="1" checked-color="#FA8072" />
         </van-cell>
-        <van-cell title="工程师注册" clickable data-name="0" bind:click="onFlagClick">
+        <van-cell title="工程师" clickable data-name="0" bind:click="onFlagClick">
           <van-radio slot="right-icon" name="0" checked-color="#FA8072" />
         </van-cell>
       </van-cell-group>

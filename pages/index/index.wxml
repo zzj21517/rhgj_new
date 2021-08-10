@@ -8,7 +8,7 @@
     bindchange="onTabChange" activeClass="tab-bar-title__selected">
     <block wx:for="{{tabs}}" wx:key="menuId">
       <view class="tab-content" slot="tab-content-{{index}}">
-        <van-radio-group value="{{curRadio}}" bind:change="onRadioChange">
+        <van-radio-group value="{{cid}}" bind:change="onRadioChange">
           <van-cell-group>
             <van-cell wx:for="{{item.children}}" wx:for-item="childItem" wx:key="menuId" title="{{childItem.label}}"
               clickable data-name="{{childItem.menuId}}" bind:click="onRadioClick">
@@ -18,7 +18,7 @@
         </van-radio-group>
 
         <van-cell-group>
-          <van-field model:value="{{ username }}" label="用户名" placeholder="请输入用户名" />
+          <van-field model:value="{{ username }}" label="称呼" placeholder="比如李总" />
           <van-field model:value="{{ phone }}" label="手机号" placeholder="请输入手机号" border="{{ false }}" />
 
           <van-field model:value="{{ sms }}" center clearable label="短信验证码" placeholder="请输入短信验证码" border="{{ false }}"
@@ -27,7 +27,7 @@
               {{countDownNum1}}
             </van-button>
           </van-field>
-          <van-button class="btn_fast" color='#FA8072'>提交</van-button>
+          <van-button class="btn_fast" color='#FA8072' bindtap="handleApply" >提交</van-button>
           <van-button bindtap="handleCall" class="btn_fast" plain color='#FA8072'>快速通道(点击拨打平台电话)</van-button>
         </van-cell-group>
       </view>

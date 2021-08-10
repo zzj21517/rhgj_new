@@ -29,7 +29,7 @@ function request(url, data, callback, errorText, failback, loading) {
       } else {
         console.log('errorText' + (errorText || '请求异常'))
         wx.showToast({
-          title: errorText || '请求异常',
+          title: errorText||res.data.error || '请求异常',
           icon: 'none',
           duration: 2000
         });
