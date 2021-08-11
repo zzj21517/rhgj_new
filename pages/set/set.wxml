@@ -1,0 +1,14 @@
+<view class="set">
+  <van-cell-group inset>
+    <van-cell title="头像" class="cell_avatar">
+      <image src="{{userInfo.avatarUrl}}" class="set_avatar"></image>
+    </van-cell>
+    <van-cell title="昵称" value="{{userInfo.nickName}}" />
+    <van-cell title="手机号" value="{{userInfo.phone}}" />
+    <van-cell title="性别" value="{{userInfo.gender=='1'?'男':'女'}}" />
+    <van-cell title="地址" value="{{userInfo.country}}-{{userInfo.province}}-{{userInfo.city}}" />
+    <van-cell title="注册时间" value="{{userInfo.registerTime}}" />
+  </van-cell-group>
+
+  <van-button bindtap="handleQuit" class="btn_quit" color='#FA8072'>退出当前账号</van-button>
+</view>

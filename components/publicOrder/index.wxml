@@ -1,0 +1,8 @@
+<view class="public_order">
+  <van-dropdown-menu>
+    <van-dropdown-item id="item" title="{{ title1 }}">
+      <van-area area-list="{{ areaList }}" bind:confirm="handleConfirm" />
+    </van-dropdown-item>
+    <van-dropdown-item value="{{ value }}" options="{{ option2 }}" />
+  </van-dropdown-menu>
+</view>

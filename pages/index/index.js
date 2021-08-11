@@ -7,6 +7,7 @@ import {
 
 Page({
   data: {
+    userInfo: {},
     pid: 0,
     cid: 0, //当前选项
     tabs: [],
@@ -26,6 +27,11 @@ Page({
   onLoad() {
     console.log(app.globalData.statusBarHeight, '122')
     this.reqMenuList()
+  },
+  onShow() {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   // 提交申请

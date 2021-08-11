@@ -20,7 +20,7 @@
     <van-cell title="券包" is-link />
     <van-cell title="红包" is-link />
     <van-cell title="会员" is-link />
-    <van-cell title="设置" is-link />
+    <van-cell title="设置" is-link  url="/pages/set/set" />
     <van-cell title="邀请有赏" is-link />
     <van-cell title="积分兑换" is-link />
     <van-cell title="我的店铺" is-link />

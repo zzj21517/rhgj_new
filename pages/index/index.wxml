@@ -4,8 +4,8 @@
   <view class="scroll_view_wrap">
   </view>
 
-  <mp-tabs tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper" bindtabclick="onTabCLick"
-    bindchange="onTabChange" activeClass="tab-bar-title__selected">
+  <mp-tabs wx:if="{{userInfo.userFlag===1}}" tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper"
+    bindtabclick="onTabCLick" bindchange="onTabChange" activeClass="tab-bar-title__selected">
     <block wx:for="{{tabs}}" wx:key="menuId">
       <view class="tab-content" slot="tab-content-{{index}}">
         <van-radio-group value="{{cid}}" bind:change="onRadioChange">
@@ -23,14 +23,17 @@
 
           <van-field model:value="{{ sms }}" center clearable label="短信验证码" placeholder="请输入短信验证码" border="{{ false }}"
             use-button-slot>
-            <van-button slot="button" size="small" type="primary" color='#FA8072' bindtap="sendSmsCode" >
+            <van-button slot="button" size="small" type="primary" color='#FA8072' bindtap="sendSmsCode">
               {{countDownNum1}}
             </van-button>
           </van-field>
-          <van-button class="btn_fast" color='#FA8072' bindtap="handleApply" >提交</van-button>
+          <van-button class="btn_fast" color='#FA8072' bindtap="handleApply">提交</van-button>
           <van-button bindtap="handleCall" class="btn_fast" plain color='#FA8072'>快速通道(点击拨打平台电话)</van-button>
         </van-cell-group>
       </view>
     </block>
   </mp-tabs>
+  <view wx:else class="public_order_wrap">
+    <public-order></public-order>
+  </view>
 </view>

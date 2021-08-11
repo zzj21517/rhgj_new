@@ -1,0 +1,10 @@
+<view class="member">
+  <view class="item {{active===index?'active_item':''}} {{index===0?'disabled_item':''}}"  wx:for="{{memberComboList}}" wx:key="id" bindtap="choosePackage" data-index="{{index}}" >
+    <view class="item_title">{{item.name}}</view>
+    <view class="item_amount">
+      <view class="amount_unit">￥</view>
+      <view class="amount_num">{{item.price}}</view>
+    </view>
+    <view class="item_desc">{{index===0?'':'购买后,'}}享受每月抽成{{item.cut}}%,免费投标{{item.tender?item.tender:'不限'}}次{{item.privilege?','+item.privilege:''}}</view>
+  </view>
+</view>

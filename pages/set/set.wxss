@@ -1,0 +1,16 @@
+/* pages/set/set.wxss */
+.set_avatar{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.btn_quit{
+  position: fixed;
+  bottom: 32rpx;
+  left: 32rpx;
+  right: 32rpx;
+}
+
+.btn_quit button{
+  width: calc(100vw - 64rpx);
+}

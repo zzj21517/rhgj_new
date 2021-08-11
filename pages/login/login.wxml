@@ -19,7 +19,7 @@
   </van-button>
 
   <van-dialog use-slot title="用户信息" show="{{ showDialog }}" show-cancel-button confirm-button-open-type="getUserInfo"
-    bind:close="onClose" bind:getuserinfo="getUserInfo">
+    bind:close="onClose" bind:getuserinfo="getUserInfo" lang="zh_CN" >
     <view class="login_dialog">需要开启用户信息授权,是否同意?</view>
   </van-dialog>
 </view>
