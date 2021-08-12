@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "开通VIP会员-选择套餐",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
 }

@@ -12,7 +12,7 @@
     <van-cell title="酬劳托管" is-link />
     <van-cell title="待付款" is-link />
     <van-cell title="待评价" is-link />
-    <van-cell title="官方客服" is-link />
+    <van-cell bindtap="handleCustomerServer" title="官方客服" is-link />
     <van-cell title="邀请" is-link />
   </van-cell-group>
 

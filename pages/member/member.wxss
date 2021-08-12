@@ -18,6 +18,11 @@
   color: #fff;
 }
 
+.disabled_item .amount_unit,
+.disabled_item .amount_num {
+  color: #fff;
+}
+
 .disabled_item .item_desc {
   color: #fff;
 }
@@ -90,4 +95,12 @@
   line-height: 36rpx;
   font-size: 26rpx;
   color: #969799;
+}
+
+.member_btn {
+  margin-left: 32rpx;
+}
+
+.member_btn button {
+  width: calc(100vw - 64rpx);
 }

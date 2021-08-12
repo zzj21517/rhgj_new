@@ -39,6 +39,13 @@ Page({
 
   },
 
+  // 打开客服
+  handleCustomerServer() {
+    wx.makePhoneCall({
+      phoneNumber: '18501513776'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
