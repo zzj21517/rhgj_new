@@ -8,7 +8,13 @@ Page({
    */
   data: {
     userInfo: {},
-    userFlag: app.globalData.userInfo.userFlag
+    userFlag: app.globalData.userInfo.userFlag,
+    showShare: false,
+    options: [{
+      name: '微信',
+      icon: 'wechat',
+      openType: 'share'
+    }, ],
   },
 
   // 切换客户<=>工程师
@@ -46,6 +52,22 @@ Page({
     })
   },
 
+  // 分享
+  handleShare() {
+    this.setData({
+      showShare: true
+    });
+  },
+
+  onShareClose() {
+    this.setData({
+      showShare: false
+    });
+  },
+
+  onShareSelect(event) {
+    this.onShareClose();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

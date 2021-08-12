@@ -1,29 +1,35 @@
 <view class="container my">
   <view class="my_header">
     <icon wx:if="{{!userInfo.avatarUrl}}" class="iconfont icon_myheader"></icon>
-    <image class="my_avatar" wx:else src="{{userInfo.avatarUrl}}" ></image>
-    <view wx:if="{{!userInfo.nickName}}" class="login_register" bindtap="switchLogin" >登录/注册</view>
-    <view wx:else class="login_register" >{{userInfo.nickName}}</view>
-    <van-button bindtap="handleSwitch" wx:if="{{userFlag}}" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至工程师</van-button>
-    <van-button bindtap="handleSwitch"  wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small" >切换至客户</van-button>
+    <image class="my_avatar" wx:else src="{{userInfo.avatarUrl}}"></image>
+    <view wx:if="{{!userInfo.nickName}}" class="login_register" bindtap="switchLogin">登录/注册</view>
+    <view wx:else class="login_register">{{userInfo.nickName}}</view>
+    <van-button bindtap="handleSwitch" wx:if="{{userFlag}}"
+      color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small">切换至工程师
+    </van-button>
+    <van-button bindtap="handleSwitch" wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))"
+      class="my_switch" size="small">切换至客户</van-button>
   </view>
 
-  <van-cell-group inset wx:if="{{userFlag}}" >
+  <van-cell-group inset wx:if="{{userFlag}}">
     <van-cell title="酬劳托管" is-link />
     <van-cell title="待付款" is-link />
     <van-cell title="待评价" is-link />
     <van-cell bindtap="handleCustomerServer" title="官方客服" is-link />
-    <van-cell title="邀请" is-link />
+    <van-cell bindtap="handleShare" title="邀请" is-link />
   </van-cell-group>
 
-  <van-cell-group inset wx:else >
+  <van-cell-group inset wx:else>
     <van-cell title="券包" is-link />
     <van-cell title="红包" is-link />
     <van-cell title="会员" is-link />
-    <van-cell title="设置" is-link  url="/pages/set/set" />
+    <van-cell title="设置" is-link url="/pages/set/set" />
     <van-cell title="邀请有赏" is-link />
     <van-cell title="积分兑换" is-link />
     <van-cell title="我的店铺" is-link />
   </van-cell-group>
 
+  <!-- 分享 -->
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onShareSelect"
+    bind:close="onShareClose" />
 </view>
