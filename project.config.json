@@ -44,7 +44,7 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.18.1",
+  "libVersion": "2.19.2",
   "appid": "wx02bb0359fa55dd39",
   "projectname": "rhjg_new",
   "debugOptions": {

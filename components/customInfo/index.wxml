@@ -1,0 +1,21 @@
+<view class="info">
+  <van-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+    <van-collapse-item title="请选择客户类型(可多选)" name="1">
+      <van-checkbox-group value="{{ checkResult }}" bind:change="onCheckChange">
+        <van-cell-group>
+          <van-cell wx:for="{{ customTypeList }}" wx:key="index" title="{{ item }}" value-class="value-class" clickable
+            data-index="{{index}}" bind:click="checkToggle">
+            <van-checkbox class="checkboxes-{{index}} van_checkbox" checked-color="#FA8072" catch:tap="checkNoop"
+              name="{{ item }}" />
+          </van-cell>
+          <van-field model:value="{{ other }}" clearable label="其他" placeholder="未列出的类型，自行填写" />
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-collapse-item>
+  </van-collapse>
+  <van-cell-group>
+    <van-field model:value="{{customFundAge}}" clearable label="成立年限" placeholder="请填写成立年限-年" type='number' required />
+    <van-field model:value="{{customMemberNum}}" clearable label="成员人数" placeholder="请填写成员人数-人" type='number' required />
+  </van-cell-group>
+  <van-button class="btn_fast" color='#FA8072' bindtap="handleApply">提交</van-button>
+</view>

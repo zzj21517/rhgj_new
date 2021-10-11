@@ -1,0 +1,193 @@
+<view class="info">
+  <van-cell-group>
+    <van-field model:value="{{engineerName}}" clearable label="昵称" placeholder="请填写昵称" required />
+    <van-field bindtap="showPopupMajor" model:value="{{major}}" clearable label="精通专业类型 " placeholder="请选择专业类型" readonly
+      required />
+    <van-field wx:for="{{selectedAreaList}}" wx:key="index" data-index="{{index}}" bindtap="showPopupArea"
+      model:value="{{item.areaNameStr}}" clearable label="能做的地区{{index+1}}" placeholder="请选择能做的地区项目" readonly
+      use-button-slot required>
+      <van-button wx:if="{{index}}" slot="button" size="mini" color='#FA8072' plain data-index="{{index}}"
+        catchtap="handleMinusArea">
+        删除
+      </van-button>
+    </van-field>
+    <view class="handle_btn">
+      <van-button class="btn_add" size='small' color='#FA8072' bindtap="handleAddArea">新增一个地区
+        <van-icon name="plus" />
+      </van-button>
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">兼职全职</view>
+      <van-radio-group direction="horizontal" value="{{ partJob }}" bind:change="onPartJobChange">
+        <van-radio name="兼职" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>兼职</van-radio>
+        <van-radio name="全职" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>全职</van-radio>
+      </van-radio-group>
+    </view>
+
+    <view class="info_radio info_cert">
+      <view class="radio_label">上传证书</view>
+      <van-uploader file-list="{{ certFileList }}" bind:after-read="afterCertRead" bind:delete="certDelete" />
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">会不会bim</view>
+      <van-radio-group direction="horizontal" value="{{ canUseBim }}" bind:change="onRadioChange"
+        data-label="canUseBim">
+        <van-radio name="{{1}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>会</van-radio>
+        <van-radio name="{{0}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>不会</van-radio>
+      </van-radio-group>
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">电子标上传</view>
+      <van-radio-group direction="horizontal" value="{{ canUploadElecBidding }}" bind:change="onRadioChange"
+        data-label="canUploadElecBidding">
+        <van-radio name="{{1}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>会</van-radio>
+        <van-radio name="{{0}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>不会</van-radio>
+      </van-radio-group>
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">当地出场对审</view>
+      <van-radio-group direction="horizontal" value="{{ canLocalCheck }}" bind:change="onRadioChange"
+        data-label="canLocalCheck">
+        <van-radio name="{{1}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>能</van-radio>
+        <van-radio name="{{0}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>不能</van-radio>
+      </van-radio-group>
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">外地出场对审</view>
+      <van-radio-group direction="horizontal" value="{{ canFieldCheck }}" bind:change="onRadioChange"
+        data-label="canFieldCheck">
+        <van-radio name="{{1}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>能</van-radio>
+        <van-radio name="{{0}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>不能</van-radio>
+      </van-radio-group>
+    </view>
+
+    <view class="info_radio">
+      <view class="radio_label required">盖造价工程师章</view>
+      <van-radio-group direction="horizontal" value="{{ canStamp }}" bind:change="onRadioChange" data-label="canStamp">
+        <van-radio name="{{1}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>能</van-radio>
+        <van-radio name="{{0}}" checked-color="#FA8072" icon-size="32rpx" custom-class='radio_wrap'>不能</van-radio>
+      </van-radio-group>
+    </view>
+
+    <van-field bindtap="onTechnologyLevelShow" model:value="{{technologyLevel}}" clearable label="技术标排名"
+      placeholder="请选择技术标过去项目评分排名" readonly required />
+
+    <van-field bindtap="onWorkYearsShow" model:value="{{workYears}}{{workYears?'年':''}}" clearable label="从业年限"
+      placeholder="请选择从业年限(1-50年)" readonly required />
+
+    <van-field bindtap="onSpaceTimeShow" model:value="{{spaceTime}}{{spaceTime?'小时':''}}" clearable label="每日空闲时间"
+      placeholder="请选择每日空闲时间(1-24h)" readonly required />
+
+    <van-field bindtap="onCompanyTypeShow" model:value="{{companyType}}" clearable label="入职公司类型"
+      placeholder="请选择入职公司类型" readonly required />
+
+    <van-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+      <van-collapse-item title="请选择使用的组价软件(可多选)" name="1">
+        <van-checkbox-group value="{{ itemPricingCheckResult }}" bind:change="onItemPricingCheckChange">
+          <van-cell-group>
+            <van-cell wx:for="{{ itemPricingList }}" wx:key="index" title="{{ item }}" value-class="value-class"
+              clickable data-index="{{index}}" bind:click="itemPricingCheckToggle">
+              <van-checkbox class="itemPricing-checkboxes-{{index}} van_checkbox" checked-color="#FA8072"
+                name="{{ item }}" catch:tap="checkNoop" />
+            </van-cell>
+            <van-field model:value="{{ otherItemPricing }}" clearable label="其他" placeholder="未列出的组价软件，自行填写" />
+          </van-cell-group>
+        </van-checkbox-group>
+      </van-collapse-item>
+      <van-collapse-item title="请选择使用的算量软件(可多选)" name="2">
+        <van-checkbox-group value="{{ calcuVolumeCheckResult }}" bind:change="onCalcuVolumeCheckChange">
+          <van-cell-group>
+            <van-cell wx:for="{{ calcuVolumeList }}" wx:key="index" title="{{ item }}" value-class="value-class"
+              clickable data-index="{{index}}" bind:click="calcuVolumeCheckToggle">
+              <van-checkbox class="calcuVolume-checkboxes-{{index}} van_checkbox" checked-color="#FA8072"
+                name="{{ item }}" catch:tap="checkNoop" />
+            </van-cell>
+            <van-field model:value="{{ otherCalcuVolume }}" clearable label="其他" placeholder="未列出的算量软件，自行填写" />
+          </van-cell-group>
+        </van-checkbox-group>
+      </van-collapse-item>
+
+      <van-collapse-item title="请选择精通工程类类型(可多选)" name="3">
+        <van-checkbox-group value="{{ projectTypeCheckResult }}" bind:change="onProjectTypeCheckChange">
+          <van-cell-group>
+            <van-cell wx:for="{{ projectTypeList }}" wx:key="index" title="{{ item }}" value-class="value-class"
+              clickable data-index="{{index}}" bind:click="projectTypeCheckToggle">
+              <van-checkbox class="projectType-checkboxes-{{index}} van_checkbox" checked-color="#FA8072"
+                name="{{ item }}" catch:tap="checkNoop" />
+            </van-cell>
+            <van-field model:value="{{ otherProjectType }}" clearable label="其他" placeholder="未列出的工程类型，自行填写" />
+          </van-cell-group>
+        </van-checkbox-group>
+      </van-collapse-item>
+
+      <van-collapse-item title="请选择精通服务类类型(可多选)" name="4">
+        <van-checkbox-group value="{{ serviceTypeCheckResult }}" bind:change="onServiceTypeCheckChange">
+          <van-cell-group>
+            <van-cell wx:for="{{ serviceTypeList }}" wx:key="index" title="{{ item }}" value-class="value-class"
+              clickable data-index="{{index}}" bind:click="serviceTypeCheckToggle">
+              <van-checkbox class="serviceType-checkboxes-{{index}} van_checkbox" checked-color="#FA8072"
+                name="{{ item }}" catch:tap="checkNoop" />
+            </van-cell>
+            <van-field model:value="{{ otherServiceType }}" clearable label="其他" placeholder="未列出的服务类型，自行填写" />
+          </van-cell-group>
+        </van-checkbox-group>
+      </van-collapse-item>
+
+      <van-collapse-item title="请选择精通采购类类型(可多选)" name="5">
+        <van-checkbox-group value="{{ purchaseTypeCheckResult }}" bind:change="onPurchaseTypeCheckChange">
+          <van-cell-group>
+            <van-cell wx:for="{{ purchaseTypeList }}" wx:key="index" title="{{ item }}" value-class="value-class"
+              clickable data-index="{{index}}" bind:click="purchaseTypeCheckToggle">
+              <van-checkbox class="purchaseType-checkboxes-{{index}} van_checkbox" checked-color="#FA8072"
+                name="{{ item }}" catch:tap="checkNoop" />
+            </van-cell>
+            <van-field model:value="{{ otherPurchaseType }}" clearable label="其他" placeholder="未列出的采购类型，自行填写" />
+          </van-cell-group>
+        </van-checkbox-group>
+      </van-collapse-item>
+    </van-collapse>
+
+    <van-button class="btn_fast" color='#FA8072' bindtap="handleApply">提交</van-button>
+  </van-cell-group>
+  <!-- 专业popup -->
+  <van-popup show="{{ showMajor }}" closeable position="bottom" bind:close="onMajorClose">
+    <view class="popup_wrap">
+      <van-checkbox-group value="{{ majorCheckResult }}" bind:change="onMajorCheckChange">
+        <van-cell-group>
+          <van-cell wx:for="{{ majorTypeList }}" wx:key="index" title="{{ item.label }}" value-class="value-class"
+            clickable data-index="{{index}}" bind:click="majorCheckToggle">
+            <van-checkbox name="{{item.label}}:{{item.value}}" class="major-checkboxes-{{index}} van_checkbox"
+              checked-color="#FA8072" catch:tap="checkNoop" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+      <van-button class="btn_fast" color='#FA8072' bindtap="handleMajorSelect">选择(多选)</van-button>
+    </view>
+  </van-popup>
+  <!-- 地区popup -->
+  <van-popup show="{{ showArea }}" position="bottom" bind:close="onAreaClose" custom-style="height: 50%">
+    <van-area area-list="{{ areaList }}" value="{{cityCode}}" bind:cancel="handleAreaCancel"
+      bind:confirm="handleAreaConfirm" />
+  </van-popup>
+
+  <!-- 从业年限 -->
+  <van-action-sheet show="{{ showWorkYears }}" actions="{{ workYearsActions }}" bind:close="onWorkYearsClose"
+    bind:select="onWorkYearsSelect" cancel-text="取消" />
+
+  <!-- 每日空闲时间 -->
+  <van-action-sheet show="{{ showSpaceTime }}" actions="{{ spaceTimeActions }}" bind:close="onSpaceTimeClose"
+    bind:select="onSpaceTimeSelect" cancel-text="取消" />
+
+  <!-- 入职公司类型 -->
+  <van-action-sheet show="{{ showCompanyType }}" actions="{{ companyTypeActions }}" bind:close="onCompanyTypeClose"
+    bind:select="onCompanyTypeSelect" cancel-text="取消" />
+
+  <!-- 技术标排名 -->
+  <van-action-sheet show="{{ showTechnologyLevel }}" actions="{{ technologyLevelActions }}" bind:close="onTechnologyLevelClose"
+    bind:select="onTechnologyLevelSelect" cancel-text="取消" />
+</view>

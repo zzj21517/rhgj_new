@@ -1,0 +1,47 @@
+.reward_invest {
+  padding: 32rpx;
+}
+
+.invest_had {
+  margin-bottom: 32rpx;
+  font-size: 28rpx;
+}
+
+.van-cell--required {
+  margin-bottom: 32rpx;
+  border: 1px solid #FA8072;
+  border-radius: 8rpx;
+}
+
+.invest_btn {
+  margin-top: 16rpx;
+}
+
+.invest_btn_back {
+  margin-top: 32rpx;
+  display: block;
+}
+
+.invest_btn button {
+  width: calc(100vw - 64rpx);
+}
+
+.invest_tip {
+  margin-top: 32rpx;
+}
+
+.tip_title {
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.tip_content {
+  font-size: 24rpx;
+  line-height: 2;
+}
+
+.had_amount {
+  font-size: 36rpx;
+  color: #FA8072;
+}

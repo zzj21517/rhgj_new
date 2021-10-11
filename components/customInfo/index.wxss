@@ -1,0 +1,23 @@
+.info {
+  margin: 32rpx;
+}
+
+.info_title {
+  margin-left: 16rpx;
+  margin-bottom: 16rpx;
+  color: rgba(69, 90, 100, 0.6);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.van_checkbox {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn_fast button{
+  margin-top: 32rpx;
+  width: 100%;
+}

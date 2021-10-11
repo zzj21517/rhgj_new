@@ -13,12 +13,23 @@ Page({
     userguid: '', //用户id
     showDialog: false,
     userFlag: "1",
+    parentId: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const {
+      parentId
+    } = options
+    this.setData({
+      parentId
+    })
+    this.getCode()
+  },
+
+  getCode() {
     wx.login({
       timeout: 2000,
       success: (res) => {
@@ -30,16 +41,40 @@ Page({
   },
 
   getPhoneNumber(e) {
+    const flag = this.data.userFlag
+    let userFlag = 1,
+      engineerType = 0;
+    switch (flag) {
+      case "1":
+        userFlag = 1
+        engineerType = 0
+        break;
+      case "2":
+        userFlag = 0
+        engineerType = 1
+        break;
+      case "3":
+        userFlag = 0
+        engineerType = 2
+        break
+      default:
+        break;
+    }
     this.reqLogin({
       'encryptedData': e.detail.encryptedData,
       'iv': e.detail.iv,
       code: this.data.code,
-      userFlag: Number(this.data.userFlag),
+      userFlag,
+      engineerType,
+      parentId: this.data.parentId,
     })
   },
 
   reqLogin(loginInfo) {
     request('/register/wxlogin', loginInfo, (data) => {
+      if (data.code != 200) {
+        return this.getCode()
+      }
       console.log(data, 'ddd')
       let userInfo = data.userInfo || {}
       wx.setStorage({
@@ -57,6 +92,9 @@ Page({
           url: '/pages/my/my',
         })
       }
+    }, '', () => {
+      console.log('err')
+      this.getCode()
     })
   },
 
@@ -66,14 +104,16 @@ Page({
       userguid: this.data.userguid,
       ...userInfo
     }, (data) => {
-      wx.setStorage({
-        key: "userInfo",
-        data: data.userInfo
-      })
-      app.globalData.userInfo = data.userInfo
-      wx.switchTab({
-        url: '/pages/my/my',
-      })
+      if (data.code == 200) {
+        wx.setStorage({
+          key: "userInfo",
+          data: data.userInfo
+        })
+        app.globalData.userInfo = data.userInfo
+        wx.navigateTo({
+          url: '/pages/infoMaintenance/infoMaintenance',
+        })
+      }
     })
   },
 

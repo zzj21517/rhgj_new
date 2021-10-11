@@ -1,0 +1,14 @@
+<view class="bidding">
+  <van-cell-group inset>
+    <van-cell title="项目编码" value="{{code}}" />
+    <van-cell title="联系人员" value="{{linkMan}}" />
+    <van-cell bindtap="handleCustomerServer" data-tel="{{linkTel}}" title="发单电话" value="{{linkTel}}" />
+    <van-field model:value="{{bidName}}" clearable label="投标人员" placeholder="请输入投标人员(例如:王工)"  required />
+    <van-field wx:if="{{yijia!=0}}" model:value="{{bidAmount}}" clearable label="投标金额" placeholder="请输入投标金额"
+      type='number' required />
+    <van-cell wx:else title="投标金额" value="{{bidAmount}}" />
+  </van-cell-group>
+  <view class="bidding_tip">备注:该项目为不可议价项目,不能修改投标金额</view>
+
+  <van-button class="btn_bid" color='#FA8072' bindtap="handleConfirmBid">确认投标</van-button>
+</view>

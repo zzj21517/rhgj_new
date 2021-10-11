@@ -7,9 +7,15 @@
       <view class="amount_num">{{item.price}}</view>
     </view>
     <view class="item_desc">
-      {{index===0?'':'购买后,'}}享受每月抽成{{item.cut}}%,免费投标{{item.tender?item.tender:'不限'}}次{{item.privilege?','+item.privilege:''}}
+      {{index===0?'':'购买后,'}}{{item.privilege?item.privilege:''}}
     </view>
   </view>
+  <van-cell-group inset>
+    <van-cell title="{{coupon.couponName?'您已选择:'+coupon.couponName:'选择优惠券'}}" is-link
+      url="/pages/coupon/coupon?type=chooseCoupon" />
+  </van-cell-group>
 
-  <van-button bindtap="handleOpen" color='#FA8072' class="member_btn">立即开通</van-button>
+  <view class="member_footer">
+    <van-submit-bar price="{{ total }}" button-text="提交订单" bind:submit="handleOpen" />
+  </view>
 </view>

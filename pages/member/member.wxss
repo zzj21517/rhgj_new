@@ -1,5 +1,7 @@
 /* pages/member/member.wxss */
-
+.member{
+  margin-bottom: 150rpx;
+}
 .item {
   margin: 32rpx;
   padding: 32rpx;
@@ -98,7 +100,10 @@
 }
 
 .member_btn {
+  margin-top: 32rpx;
   margin-left: 32rpx;
+  margin-bottom: 32rpx;
+  display: block;
 }
 
 .member_btn button {

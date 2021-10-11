@@ -1,0 +1,5 @@
+<view class="info_main">
+  <custom-info wx:if="{{userInfo.userFlag==1}}"></custom-info>
+  <engineer-person-info wx:if="{{userInfo.userFlag==0&&userInfo.engineerType==1}}"></engineer-person-info>
+  <engineer-team-info wx:if="{{userInfo.userFlag==0&&userInfo.engineerType==2}}" userInfo="{{userInfo}}" ></engineer-team-info>
+</view>

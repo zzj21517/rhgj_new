@@ -9,8 +9,11 @@
         <van-cell title="客户" clickable data-name="1" bind:click="onFlagClick">
           <van-radio slot="right-icon" name="1" checked-color="#FA8072" />
         </van-cell>
-        <van-cell title="工程师" clickable data-name="0" bind:click="onFlagClick">
-          <van-radio slot="right-icon" name="0" checked-color="#FA8072" />
+        <van-cell title="工程师-个人" clickable data-name="2" bind:click="onFlagClick">
+          <van-radio slot="right-icon" name="2" checked-color="#FA8072" />
+        </van-cell>
+        <van-cell title="工程师-团队/工作室/公司" clickable data-name="3" bind:click="onFlagClick">
+          <van-radio slot="right-icon" name="3" checked-color="#FA8072" />
         </van-cell>
       </van-cell-group>
     </van-radio-group>

@@ -4,9 +4,20 @@
     "pages/order/order",
     "pages/my/my",
     "pages/login/login",
-    "components/publicPage/index",
     "pages/set/set",
-    "pages/member/member"
+    "pages/member/member",
+    "pages/rewardInvest/rewardInvest",
+    "pages/infoMaintenance/infoMaintenance",
+    "pages/projectDetail/projectDetail",
+    "pages/userInfo/userInfo",
+    "pages/awaitPayment/awaitPayment",
+    "pages/deposit/deposit",
+    "pages/bidding/bidding",
+    "pages/engineerInfo/engineerInfo",
+    "pages/luckyDraw/luckyDraw",
+    "pages/coupon/coupon",
+    "pages/integral/integral",
+    "pages/appraise/appraise"
   ],
   "window": {
     "backgroundTextStyle": "light",

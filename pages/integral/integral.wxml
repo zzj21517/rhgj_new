@@ -1,0 +1,10 @@
+<view class="integral">
+  <van-cell-group inset>
+    <van-cell title="剩余积分" value="{{userInfo.userFlag?useInfo.customIntegralAmount:userInfo.engineerIntegralAmount}}" />
+    <van-cell title='兑换抽奖机会'>
+      <van-stepper value="{{convertNum}}" bind:change="onStepChange" />
+    </van-cell>
+  </van-cell-group>
+  <view class="integral_tip">提示:100积分可兑换一次抽奖机会</view>
+  <van-button bindtap="handleConvert" class="convert_btn" color="#FA8072">立即兑换</van-button>
+</view>

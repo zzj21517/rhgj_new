@@ -1,0 +1,47 @@
+<view wx:if="{{couponList.length}}" class="coupon">
+  <van-radio-group wx:if="{{type}}" value="{{ radio }}" bind:change="onRadioChange">
+    <view wx:for="{{couponList}}" wx:key="index" wx:if="{{item.couponStatus!=1&&item.timeLimit}}"
+      data-name="{{item.rowGuid}}" bindtap="onRadioClick" class="coupon_item">
+      <view class="item_left">
+        <view class="left_amount">
+          <view class="amount_amount">{{item.couponAmount}}</view>
+          <view class="amount_unit">元</view>
+        </view>
+        <view class="left_limit">{{item.userFlag==0?'开通会员可用':'下单可用'}}</view>
+      </view>
+      <view class="item_middle">
+        <view class="middle_name">{{item.couponName}}</view>
+        <view class="middle_expire">{{item.createTime}}至{{item.expireTime}}</view>
+      </view>
+      <view class="item_right">
+        <van-radio name="{{item.rowGuid}}" checked-color="#FA8072"></van-radio>
+      </view>
+    </view>
+  </van-radio-group>
+  <view wx:else>
+    <view wx:for="{{couponList}}" wx:key="index" class="coupon_item">
+      <view class="item_left">
+        <view class="left_amount">
+          <view class="amount_amount">{{item.couponAmount}}</view>
+          <view class="amount_unit">元</view>
+        </view>
+        <view class="left_limit">{{item.userFlag==0?'开通会员可用':'下单可用'}}</view>
+      </view>
+      <view class="item_middle">
+        <view class="middle_name">{{item.couponName}}</view>
+        <view class="middle_expire">{{item.createTime}}至{{item.expireTime}}</view>
+      </view>
+      <view class="item_right">
+        <van-button wx:if="{{item.couponStatus==1}}" plain size='mini' color='#FA8072' disabled>已使用</van-button>
+        <van-button wx:elif="{{!item.timeLimit}}" plain size='mini' color='#FA8072'>已过期</van-button>
+        <van-button data-info="{{item}}" bindtap="handleToUse" wx:else size='mini' color='#FA8072'>去使用</van-button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{type}}" class="coupon_footer">
+    <van-button class="footer_btn" bindtap="handleChoose" color='#FA8072'>选择优惠券</van-button>
+  </view>
+</view>
+
+<van-empty wx:else description="暂无优惠券" />

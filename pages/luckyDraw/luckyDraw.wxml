@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="info_radio">
+  <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
+    <van-cell-group>
+      <van-cell wx:if="{{userInfo.userFlag==0}}" title="工程师拉新注册剩余抽奖次数{{userInfo.engineerShareNewUserCouponCount||0}}"
+        clickable data-name="1" bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="1" checked-color="#FA8072" />
+      </van-cell>
+      <van-cell wx:if="{{userInfo.userFlag==1}}" title="客户拉新注册剩余抽奖次数{{userInfo.customShareNewUserCouponCount||0}}"
+        clickable data-name="2" bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="2" checked-color="#FA8072" />
+      </van-cell>
+      <van-cell wx:if="{{userInfo.userFlag==1}}" title="客户发布项目剩余抽奖次数{{userInfo.customAddProjectCouponCount||0}}"
+        clickable data-name="3" bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="3" checked-color="#FA8072" />
+      </van-cell>
+      <van-cell title="邀请好友第一次完成项目剩余抽奖次数{{userInfo.shareCouponCount||0}}" clickable data-name="4"
+        bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="4" checked-color="#FA8072" />
+      </van-cell>
+      <van-cell wx:if="{{userInfo.userFlag==0}}"  title="工程师积分兑换抽奖次数{{userInfo.engineerIntegralConvertAmount||0}}" clickable data-name="5"
+        bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="5" checked-color="#FA8072" />
+      </van-cell>
+      <van-cell wx:if="{{userInfo.userFlag==1}}"  title="客户积分兑换抽奖次数{{userInfo.customIntegralConvertAmount||0}}" clickable data-name="6"
+        bind:click="onRadioClick">
+        <van-radio slot="right-icon" name="6" checked-color="#FA8072" />
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</view>
+<view class="lucky_draw">
+  <view class="draw_title">您有{{luckyNum}}次抽奖机会</view>
+  <view class='frame_view'>
+    <view class='frame_row'>
+      <image class='frame_item frame_item1' style='opacity:{{color[0]}}' src='{{images[0]}}'></image>
+      <image class='frame_item frame_item2' style='opacity:{{color[1]}}' src='{{images[1]}}'></image>
+      <image class='frame_item frame_item3 ' style='opacity:{{color[2]}}' src='{{images[2]}}'></image>
+    </view>
+
+    <view class='frame_row'>
+      <image class='frame_item frame_item4 ' style='opacity:{{color[7]}}' src='{{images[7]}}'></image>
+      <image class='frame_item' src='{{btnconfirm}}' bindtap='{{clickLuck}}'></image>
+      <image class='frame_item frame_item5 ' style='opacity:{{color[3]}}' src='{{images[3]}}'></image>
+    </view>
+
+    <view class='frame_row'>
+      <image class='frame_item frame_item6' style='opacity:{{color[6]}}' src='{{images[6]}}'></image>
+      <image class='frame_item frame_item7' style='opacity:{{color[5]}}' src='{{images[5]}}'></image>
+      <image class='frame_item frame_item8' style='opacity:{{color[4]}}' src='{{images[4]}}'></image>
+    </view>
+  </view>
+</view>

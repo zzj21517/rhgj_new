@@ -1,0 +1,25 @@
+<view class="reward_invest">
+  <view class="invest_had">
+    <text>账户中的保证金:</text>
+    <text class="had_amount" >￥{{userInfo.deposit||0}}</text>
+  </view>
+  <van-cell-group class="invest_group">
+    <van-field model:value="{{ amount }}" type='digit' required clearable label="金额" placeholder="请输入金额" />
+  </van-cell-group>
+  <van-button bindtap="handleInvest" class="invest_btn" color="#FA8072">充值</van-button>
+  <van-button bindtap="handleBack" class="invest_btn invest_btn_back">保证金退回</van-button>
+  <view class="invest_tip">
+    <view class="tip_title">保证金充值说明:</view>
+    <view class="tip_content">
+      <view>
+        1.中标人为了保证所中标项目的质量和工期而暂时托管到融汇精工平台的费用，如果2个月内没有在融汇精工平台接到单，可以申请退回。
+      </view>
+      <view>
+        2.如果中途，中标后，不做，情节严重的，扣除保证金。
+      </view>
+      <view>
+        3.做的质量差的，平台会根据具体情况另行判定。是否扣除部分保证金。
+      </view>
+    </view>
+  </view>
+</view>

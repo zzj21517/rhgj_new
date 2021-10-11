@@ -1,7 +1,9 @@
 {
   "navigationBarTitleText": "订单",
   "usingComponents": {
-    "van-dropdown-menu":"@vant/weapp/dropdown-menu/index",
-    "van-dropdown-item":"@vant/weapp/dropdown-item/index"
-  }
+    "custom-order":"/components/customOrder/index",
+    "engineer-order":"/components/engineerOrder/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle":"dark"
 }

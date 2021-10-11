@@ -1,0 +1,15 @@
+<view class="await_payment">
+  <view wx:for="{{tradeList}}" wx:key="gUID" class="list_item">
+    <view class="item_header">
+      <view class="header_code">订单编号:{{item.tRADE_NUM}}</view>
+      <view class="header_status">{{!item.pAY_STATUS?'待付款':'已付款'}}</view>
+    </view>
+    <view class="item_content">
+      <view class="content_title">订单类型:{{item.cONTENT}}</view>
+      <view class="content_amount">订单金额:{{item.tRADE_AMT}}</view>
+    </view>
+    <view wx:if="{{!item.pAY_STATUS}}" class="item_footer">
+      <van-button class="btn_pay" size='small' color='#FA8072' bindtap="handleApply">支付</van-button>
+    </view>
+  </view>
+</view>

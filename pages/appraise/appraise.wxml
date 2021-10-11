@@ -1,0 +1,23 @@
+<view wx:if="{{productList.length}}" class="project_list">
+  <view class="list_item" wx:for="{{productList}}" wx:key="index" bindtap="handleDetail" data-info="{{item}}">
+    <view class="item_title">
+      <view class="title_left">
+        {{item.cREGIE_ID?item.cREGIE_ID+"-":''}}{{item.pROJECT_CLASSIFY?item.pROJECT_CLASSIFY:''}}</view>
+      <view class="title_right">{{item.dATATIME}}</view>
+    </view>
+    <view class="item_desc">{{item.pROJECT_DESC}}</view>
+    <view class="item_tags">
+      <van-tag wx:if="{{item.pROJECT_AMT}}" class="tags_tag" color="#FA8072" text-color="#fff">
+        ¥{{item.pROJECT_AMT}}
+      </van-tag>
+      <van-tag wx:if="{{item.sTATUS}}" class="tags_tag" color="#FA8072" text-color="#fff">{{item.sTATUS}}
+      </van-tag>
+      <van-tag wx:if="{{item.fINISH_DATE}}" class="tags_tag" color="#FA8072" plain>结束时间 {{item.fINISH_DATE}}
+      </van-tag>
+    </view>
+    <view class="btn_wrap">
+      <van-button bindtap="handleDetail" size="mini" color='#FA8072'>评价</van-button>
+    </view>
+  </view>
+</view>
+<van-empty wx:else description="暂无订单" />

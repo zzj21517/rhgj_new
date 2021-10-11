@@ -1,4 +1,7 @@
 // pages/set/set.js
+import {
+  membershipObj
+} from '../../utils/util'
 const app = getApp()
 Page({
 
@@ -6,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    levelName:"",
     userInfo: {},
   },
 
@@ -27,8 +31,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const userInfo = app.globalData.userInfo
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo,
+      levelName: membershipObj[userInfo.level || 0]
     })
   },
 

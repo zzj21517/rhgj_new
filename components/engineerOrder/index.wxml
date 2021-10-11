@@ -1,0 +1,31 @@
+<view class="container custom_order">
+
+  <van-tabs active="{{ tabActive }}" bind:change="onTabChange">
+    <van-tab wx:for="{{tabs}}" wx:key="index" title="{{item.text}}">
+      <view wx:if="{{productList.length}}" class="project_list">
+        <view class="list_item" wx:for="{{productList}}" wx:key="index" bindtap="handleDetail" data-info="{{item}}">
+          <view class="item_title">
+            <view class="title_left">
+              {{item.cREGIE_ID?item.cREGIE_ID+"-":''}}{{item.pROJECT_CLASSIFY?item.pROJECT_CLASSIFY:''}}</view>
+            <view class="title_right">{{item.dATATIME}}</view>
+          </view>
+          <view class="item_desc">{{item.pROJECT_DESC}}</view>
+          <view class="item_tags">
+            <van-tag wx:if="{{item.eNGINEER_AMT}}" class="tags_tag" color="#FA8072" text-color="#fff">¥{{item.eNGINEER_AMT}}
+            </van-tag>
+            <van-tag wx:if="{{item.sTATUS}}" class="tags_tag" color="#FA8072" text-color="#fff">{{item.sTATUS}}
+            </van-tag>
+            <van-tag wx:if="{{item.fINISH_DATE}}" class="tags_tag" color="#FA8072" plain>结束时间 {{item.fINISH_DATE}}
+            </van-tag>
+          </view>
+        </view>
+      </view>
+      <van-empty wx:else description="暂无订单" />
+    </van-tab>
+  </van-tabs>
+  <van-dropdown-menu>
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  </van-dropdown-menu>
+
+</view>

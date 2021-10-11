@@ -1,0 +1,18 @@
+/* pages/integral/integral.wxss */
+.integral {
+  margin: 32rpx;
+}
+
+.convert_btn{
+  margin-top: 32rpx;
+  display: block;
+}
+.convert_btn button{
+  width: 100%;
+}
+
+.integral_tip{
+  margin-top: 32rpx;
+  padding-left: 64rpx;
+  font-size: 14px;
+}

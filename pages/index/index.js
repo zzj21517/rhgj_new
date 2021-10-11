@@ -5,8 +5,14 @@ import {
   request
 } from '../../utils/request'
 
+import moment from 'moment'
+
 Page({
   data: {
+    dialogShow: false,
+    couponGiveList: [],
+    curProject: {},
+    bannerList: [], //轮播图列表
     userInfo: {},
     pid: 0,
     cid: 0, //当前选项
@@ -20,17 +26,67 @@ Page({
     countDownNum: '发送验证码', //倒计时初始值
     countDownNum1: '发送验证码' //倒计时初始值
   },
+  getChildComponent: function () {
+    const child = this.selectComponent('#public_project');
+    return child
+  },
   // 事件处理函数
   bindViewTap() {
 
   },
   onLoad() {
-    console.log(app.globalData.statusBarHeight, '122')
     this.reqMenuList()
+    this.getBannerList()
+    if (app.globalData.userInfo.rowGuid) {
+      this.getCouponGiveList()
+    }
   },
   onShow() {
+    this.getCurProject()
     this.setData({
       userInfo: app.globalData.userInfo
+    })
+  },
+
+  // 获取发放的优惠券
+  getCouponGiveList() {
+    request('/ProjectController/GetCouponGiveList', {
+      onOff: 1
+    }, (data) => {
+      if (data.code == 200 && data.subCode == 0) {
+        let tempList = (data.list || []).filter(item => {
+          console.log(moment(item.expireTime).isAfter(moment()))
+          return moment(item.expireTime).isAfter(moment())
+        })
+        tempList.forEach(item => {
+          item.expireTime = moment(item.expireTime).format('YYYY-MM-DD')
+        })
+        this.setData({
+          couponGiveList: tempList,
+          dialogShow: tempList.length
+        })
+      } else {
+        this.setData({
+          couponGiveList: []
+        })
+      }
+    })
+  },
+
+  // 获取最近一个项目
+  getCurProject() {
+    request('/ProjectController/GetCurProject', {
+
+    }, (data) => {
+      if (data.code == 200 && data.subCode == 0) {
+        this.setData({
+          curProject: data.project || {}
+        })
+      } else {
+        this.setData({
+          curProject: {}
+        })
+      }
     })
   },
 
@@ -183,5 +239,77 @@ Page({
     this.setData({
       cid: name,
     });
+  },
+
+  // 获取轮播图
+  getBannerList() {
+    request('/icon/getIcon', {
+      iconThem: "banner"
+    }, (data) => {
+      this.setData({
+        bannerList: data.result || []
+      })
+    })
+  },
+
+  onDialogCancel() {
+
+  },
+
+  onDialogConfirm() {
+    const {
+      couponAmount,
+      couponName,
+      expireTime,
+      createTime,
+      rowGuid,
+    } = this.data.couponGiveList[0]
+    let params = {
+      giveGuid: rowGuid,
+      couponAmount,
+      couponName,
+      createTime,
+      expireTime,
+      couponFrom: '平台发放',
+      couponStatus: 0,
+      couponType: "7"
+    }
+    request('/ProjectController/AddCoupon', params, (data) => {
+      if (data.code == 200) {
+        wx.showToast({
+          icon: 'none',
+          title: '领取成功!',
+        })
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: '领取失败!',
+        })
+      }
+    })
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+    const publicProjectCom = this.getChildComponent()
+    if (publicProjectCom) {
+      publicProjectCom.setData({
+        pageNum: 1
+      })
+      publicProjectCom.getProductList()
+    }
+    return true
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    const publicProjectCom = this.getChildComponent()
+    if (publicProjectCom) {
+      publicProjectCom.getProductList(true)
+    }
   },
 })

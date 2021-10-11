@@ -33,7 +33,38 @@
       </view>
     </block>
   </mp-tabs>
-  <view wx:else class="public_order_wrap">
-    <public-order></public-order>
+  <view wx:else class="public_project_wrap">
+    <view class="page-section page-section-spacing swiper">
+      <swiper class="swiper_content" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}"
+        duration="{{1000}}">
+        <block wx:for="{{bannerList}}" wx:key="index">
+          <swiper-item>
+            <view class="swiper-item">
+              <image class="swiper_item_img" src="{{item.iconurl}}"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <van-notice-bar scrollable wx:if="{{curProject.pROJECT_NUM}}" left-icon="volume-o"
+      text="{{curProject.lINK_MAN}}发布了{{curProject.pROJECT_DESC}}" />
+    <public-project id="public_project"></public-project>
   </view>
+
+  <van-dialog use-slot title="优惠券领取" show="{{ dialogShow }}" show-cancel-button bind:close="onDialogClose"
+    bind:confirm="onDialogConfirm">
+    <view wx:for="{{couponGiveList}}" wx:key="index" class="coupon_item">
+      <view class="item_left">
+        <view class="left_amount">
+          <view class="amount_amount">{{item.couponAmount}}</view>
+          <view class="amount_unit">元</view>
+        </view>
+        <view class="left_limit">{{item.userFlag==0?'开通会员可用':'下单可用'}}</view>
+      </view>
+      <view class="item_middle">
+        <view class="middle_name">{{item.couponName}}</view>
+        <view class="middle_expire">有效期至:{{item.expireTime}}</view>
+      </view>
+    </view>
+  </van-dialog>
 </view>

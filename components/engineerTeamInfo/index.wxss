@@ -1,0 +1,62 @@
+.popup_wrap {
+  margin-top: 64rpx;
+}
+
+.van_checkbox {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn_fast button {
+  margin: 32rpx;
+  width: calc(100% - 64rpx);
+}
+
+.handle_btn {
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn_add {
+  margin-right: 32rpx;
+}
+
+.van-field__label {
+  line-height: 30px;
+}
+
+.info_radio {
+  padding: 16rpx 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info_cert {
+  align-items: flex-start;
+}
+
+.radio_label {
+  margin-right: 32rpx;
+  width: 200rpx;
+  color: #646566;
+  font-size: 14px;
+}
+
+.radio_wrap {
+  font-size: 14px;
+}
+
+.required{
+  position: relative;
+}
+
+.required::before{
+  position: absolute;
+  content: "*";
+  left: -8px;
+  font-size: 14px;
+  color: #ee0a24;
+}

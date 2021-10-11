@@ -1,0 +1,178 @@
+.project_detail {
+  margin-bottom: 100rpx;
+}
+
+.project_detail1 {
+  margin-top: 160rpx;
+}
+
+.project_detail2{
+  margin-top: 80rpx;
+}
+
+.collapse_desc {
+  padding-left: 16rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.bidding_detail_wrap {
+  margin: 32rpx;
+  padding: 32rpx;
+  border: 1px solid #e1e1e1;
+  border-radius: 8rpx;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.bidding_detail {
+  position: relative;
+  display: flex;
+}
+
+.bidding_detail1 {
+  position: relative;
+  margin: 32rpx;
+  padding: 32rpx;
+  display: flex;
+  border: 1px solid #e1e1e1;
+  border-radius: 8rpx;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.bidding_left image {
+  margin-right: 16rpx;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+
+.bidding_righ {}
+
+.right_project {
+  display: flex;
+}
+
+.right_price {
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  white-space: nowrap;
+}
+
+.project_num {
+  margin-right: 32rpx;
+}
+
+.c_fa8072 {
+  color: #FA8072;
+}
+
+.project_tags {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags_tag {
+  margin-right: 16rpx;
+}
+
+.bidding_img {
+  position: absolute;
+  right: 32rpx;
+  transform: rotate(45deg);
+}
+
+.bidding_img image {
+  width: 128rpx;
+  height: 80rpx;
+}
+
+.detail_footer {
+  z-index: 10;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #fff;
+}
+
+/* .bidding_footer {
+  padding:32rpx;
+  display: flex;
+  justify-content: center;
+} */
+
+.btn_bid {
+  margin-top: 32rpx;
+  display: block;
+}
+
+.btn_bid button {
+  width: 100%;
+}
+
+/* .bidding_footer .btn_bid button {
+  margin-right: 32rpx;
+  width: 40vw;
+} */
+
+.action_wrap {
+  height: 40vh;
+}
+
+.btn_pay {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.btn_pay button {
+  width: 100%;
+}
+
+.btn_win button {
+  padding: 0 12rpx;
+}
+
+.btn_detail {
+  margin-left: 16rpx;
+}
+
+.project_countdown {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  height: 80rpx;
+  background-color: #FA8072;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.project_countdown1 {
+  top: 80rpx;
+}
+
+.project_countdown .van-count-down {
+  color: #fff;
+}
+
+.upload_process {
+  padding: 16rpx 32rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+.process_label {
+  margin-right: 32rpx;
+  width: 120rpx;
+  color: #323233;
+  font-size: 14px;
+}

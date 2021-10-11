@@ -1,0 +1,15 @@
+.bidding_tip {
+  margin-top: 32rpx;
+  margin-left: 64rpx;
+  font-size: 14px;
+  color: #FA8072;
+}
+
+.btn_bid {
+  margin: 32rpx;
+  display: block;
+}
+
+.btn_bid button {
+  width: 100%;
+}

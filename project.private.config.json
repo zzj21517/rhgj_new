@@ -41,6 +41,66 @@
           "pathName": "pages/member/member",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/rewardInvest/rewardInvest",
+          "pathName": "pages/rewardInvest/rewardInvest",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/infoMaintenance/infoMaintenance",
+          "pathName": "pages/infoMaintenance/infoMaintenance",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/projectDetail/projectDetail",
+          "pathName": "pages/projectDetail/projectDetail",
+          "query": "fid=CCX100674&custid=18860912786",
+          "scene": null
+        },
+        {
+          "name": "pages/awaitPayment/awaitPayment",
+          "pathName": "pages/awaitPayment/awaitPayment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/deposit/deposit",
+          "pathName": "pages/deposit/deposit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bidding/bidding",
+          "pathName": "pages/bidding/bidding",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/luckyDraw/luckyDraw",
+          "pathName": "pages/luckyDraw/luckyDraw",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon/coupon",
+          "pathName": "pages/coupon/coupon",
+          "query": "type=chooseCoupon",
+          "scene": null
+        },
+        {
+          "name": "pages/integral/integral",
+          "pathName": "pages/integral/integral",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/appraise/appraise",
+          "pathName": "pages/appraise/appraise",
+          "query": "",
+          "scene": null
         }
       ]
     }

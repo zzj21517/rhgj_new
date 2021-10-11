@@ -1,13 +1,17 @@
 {
   "usingComponents": {
-    "van-button":"@vant/weapp/button/index",
+    "van-button": "@vant/weapp/button/index",
     "mp-tabs": "@miniprogram-component-plus/tabs",
     "van-radio": "@vant/weapp/radio/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
-    "van-cell":"@vant/weapp/cell/index",
-    "van-cell-group":"@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-field": "@vant/weapp/field/index",
-    "public-order":"/components/publicOrder/index"
+    "public-project": "/components/publicProject/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   },
-  "navigationBarBackgroundColor": "#FF8072"
+  "navigationBarBackgroundColor": "#FF8072",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

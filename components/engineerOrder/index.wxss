@@ -1,0 +1,40 @@
+/* components/publicPage/index.wxss */
+
+.list_item {
+  margin: 32rpx;
+  padding: 32rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.item_title {
+  margin-bottom: 16rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title_left {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.title_right{
+  font-size: 13px;
+  color: rgba(0,0,0,0.45);
+}
+
+.item_desc {
+  margin-bottom: 16rpx;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.tags_tag {
+  margin-right: 16rpx;
+}

@@ -1,0 +1,89 @@
+/**index.wxss**/
+.lucky_draw {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.draw_title {
+  margin-top: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.frame_view {
+  bottom: 160rpx;
+  left: 60rpx;
+  right: 60rpx;
+  width: 590rpx;
+  height: 590rpx;
+  padding: 20rpx;
+  background: #792db3;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30rpx;
+}
+
+.frame_row {
+  width: 580rpx;
+  height: 180rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.frame_item {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.frame_item {
+  position: relative;
+}
+
+.frame_item::after {
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.frame_item1::after {
+  content: '10元';
+}
+
+.frame_item2::after {
+  content: '15元';
+}
+
+.frame_item3::after {
+  content: '20元';
+}
+
+.frame_item4::after {
+  content: '50元';
+}
+
+.frame_item5::after {
+  content: '25元';
+}
+
+.frame_item6::after {
+  content: '35元';
+}
+
+.frame_item7::after {
+  content: '30元';
+}
+
+.frame_item8::after {
+  content: '谢谢惠顾';
+  font-size: 12px;
+  white-space: nowrap;
+}

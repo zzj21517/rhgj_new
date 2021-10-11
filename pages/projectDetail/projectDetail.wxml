@@ -1,0 +1,203 @@
+<view
+  class="project_detail {{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid&&'project_detail1'}} {{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid&&activeStep==4&&'project_detail2'}}">
+  <view wx:if="{{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid&&'project_detail1'}}">
+    <view wx:if="{{countDown>0}}" class="project_countdown" bind:finish="handleFinish">
+      项目结束倒计时:
+      <van-count-down time="{{countDown}}" format="DD 天 HH 时 mm 分 ss 秒" />
+    </view>
+    <view wx:else class="project_countdown">
+      {{activeStep==4?'项目结束':'项目逾期'}}
+    </view>
+    <view wx:if="{{activeStep!=4}}">
+      <view wx:if="{{countDown>0}}" class="project_countdown project_countdown1" bind:finish="handleFinish">
+        进度倒计时:
+        <van-count-down time="{{countDown}}" format="DD 天 HH 时 mm 分 ss 秒" />
+      </view>
+      <view wx:else class="project_countdown project_countdown1">
+        上传进度逾期
+      </view>
+    </view>
+  </view>
+  <van-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+    <van-collapse-item title="项目进度" name="1">
+      <van-steps steps="{{ steps }}"
+        active="{{ activeStep==3?(biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid&&userInfo.deposit<biddingRecord.pROJECT_AMT*0.1?3:4):(activeStep==4?5:activeStep) }}"
+        direction="vertical" active-color="#FA8072" />
+    </van-collapse-item>
+    <van-collapse-item title="项目基本信息" name="2">
+      <van-cell-group>
+        <van-cell title="项目编号:" value="{{projectDetail.pROJECT_NUM}}" />
+        <van-cell title="项目用途:" value="{{projectDetail.yONGTU}}" />
+        <van-cell title="项目类别:" value="{{projectDetail.lEIBIE}}" />
+        <van-cell title="项目需求:" value="{{projectDetail.xUQIU}}" />
+        <van-cell title="联系人员:" value="{{projectDetail.lINK_MAN}}" />
+        <van-cell title="项目酬劳:"
+          value="{{projectDetail.cUST_ID==userInfo.rowGuid?projectDetail.pROJECT_AMT:projectDetail.eNGINEER_AMT}}元" />
+        <van-cell title="所需专业:" value="{{projectDetail.pROFESSION_NAME}}" />
+        <!-- <van-cell title="是否可议价:" value="{{projectDetail.iS_COLLECT?'可议价':'不可议价'}}" /> -->
+        <van-cell title="完成日期:" value="{{projectDetail.fINISH_DATE}}" />
+      </van-cell-group>
+    </van-collapse-item>
+  </van-collapse>
+
+  <view wx:if="{{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid||projectDetail.cUST_ID==userInfo.rowGuid}}"
+    class="upload_process">
+    <view wx:if="{{projectDetail.cUST_ID==userInfo.rowGuid}}" class="process_label">查看进度</view>
+    <view wx:else class="process_label">上传进度</view>
+    <van-uploader show-upload="{{activeStep!=4&&biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid?true:false}}"
+      file-list="{{ processList }}" bind:after-read="uploadProcess" deletable="{{false}}" />
+  </view>
+
+  <van-tabs active="{{ activeTab }}" bind:change="onTabChange">
+    <van-tab title="项目详情">
+      <van-cell-group>
+        <van-cell title="项目状态:" value="{{steps[activeStep].text}}" />
+        <van-cell title="项目规模类型:" value="{{projectDetail.lIST_NUM}}" />
+        <van-cell title="项目规模:" value="{{projectDetail.pROJECT_SIZE}}" />
+        <van-cell title="酬劳支付方式:" value="{{projectDetail.pAY_TYPE_NAME}}" />
+        <van-cell title="酬劳支付金额:" value="{{projectDetail.pAY_TYPE_VALUE}}" />
+        <van-cell title="所在地区:"
+          value="{{projectDetail.mREGIE_ID}}{{projectDetail.mREGIE_ID&&projectDetail.cREGIE_ID?'-':''}}{{projectDetail.cREGIE_ID}}{{projectDetail.cREGIE_ID&&projectDetail.qREGIE_ID?'-':''}}{{projectDetail.qREGIE_ID}}" />
+        <van-collapse value="{{ activeCollapse1}}" bind:change="onCollapse1Change">
+          <van-collapse-item title="项目描述" name="1">
+            <view class="collapse_desc">
+              {{projectDetail.pROJECT_DESC}}
+            </view>
+          </van-collapse-item>
+        </van-collapse>
+      </van-cell-group>
+    </van-tab>
+    <van-tab title="投标详情">
+      <view wx:if="{{biddingList.length}}">
+        <view wx:for="{{biddingList}}" wx:key="index" class="bidding_detail1">
+          <view class="bidding_left">
+            <image src="{{item.avatarUrl}}"></image>
+          </view>
+          <view class="bidding_right">
+            <view class="right_name">投标人员: {{item.nickName}}</view>
+            <view class="right_price">报价:<text
+                class="c_fa8072">{{projectDetail.cUST_ID==userInfo.rowGuid?projectDetail.pROJECT_AMT:item.pROJECT_AMT}}</text>
+              <text>元</text>
+            </view>
+            <view class="right_project">
+              <view class="project_num">完成项目:<text class="c_fa8072"> {{item.finishNum||0}} </text>个</view>
+              <view class="project_deposit">保证金:<text class="c_fa8072"> {{item.deposit||0}} </text>元</view>
+            </view>
+            <view class="project_tags">
+              <van-tag class="tags_tag" color="#FA8072" plain>
+                {{membershipObj[item.level||0]}}</van-tag>
+              <view>
+                <van-button wx:if="{{projectDetail.cUST_ID==userInfo.rowGuid&&projectDetail.sTATUS_VALUE=='00'}}"
+                  class="btn_win" size='mini' data-info="{{item}}" color='#FA8072' bindtap="handleWin">选择中标人
+                </van-button>
+                <!-- <van-button class="btn_win btn_detail" size='mini' data-info="{{item}}" plain color='#FA8072'
+                  data-info="{{item}}" bindtap="findDetail">
+                  查看详情
+                </van-button> -->
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.sTATUS=='06'}}" class="bidding_img">
+            <image src="/static/images/bidding.png"></image>
+          </view>
+        </view>
+      </view>
+
+      <van-empty wx:else description="暂无投标人信息" />
+    </van-tab>
+    <van-tab title="中标详情">
+      <view class="bidding_detail_wrap" wx:if="{{biddingRecord.rowguid}}">
+        <view class="bidding_detail">
+          <view class="bidding_left">
+            <image src="{{biddingRecord.avatarUrl}}"></image>
+          </view>
+          <view class="bidding_right">
+            <view class="right_name">中标人员: {{biddingRecord.nickName}}</view>
+            <view class="right_price">报价:<text class="c_fa8072">
+                {{projectDetail.cUST_ID==userInfo.rowGuid?projectDetail.pROJECT_AMT:biddingRecord.pROJECT_AMT}} </text>元
+            </view>
+            <view class="right_project">
+              <view class="project_num">完成项目:<text class="c_fa8072"> {{biddingRecord.finishNum||0}} </text>个</view>
+              <view class="project_deposit">保证金:<text class="c_fa8072"> {{biddingRecord.deposit||0}} </text>元</view>
+            </view>
+            <view class="project_tags">
+              <van-tag class="tags_tag" color="#FA8072" plain>
+                {{membershipObj[biddingRecord.level||0]}}</van-tag>
+            </view>
+          </view>
+          <view class="bidding_img">
+            <image src="/static/images/bidding.png"></image>
+          </view>
+        </view>
+
+        <van-cell-group>
+          <van-cell title="完成">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.completeRate }}"
+              data-name='completeRate' bind:change="onRateChange" />
+          </van-cell>
+          <van-cell title="质量">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.qualityRate }}" data-name='qualityRate'
+              bind:change="onRateChange" />
+          </van-cell>
+          <van-cell title="服务态度">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.serviceAttiduteRate }}"
+              data-name='serviceAttiduteRate' bind:change="onRateChange" />
+          </van-cell>
+          <van-cell title="配合程度">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.cooperationRate }}"
+              data-name='cooperationRate' bind:change="onRateChange" />
+          </van-cell>
+          <van-cell title="及时完成配合度">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.timelyRate }}" data-name='timelyRate'
+              bind:change="onRateChange" />
+          </van-cell>
+          <van-cell title="按时上传">
+            <van-rate disabled="{{projectDetail.isAppraise}}" value="{{ rateObj.uploadRate }}" data-name="uploadRate"
+              bind:change="onRateChange" />
+          </van-cell>
+        </van-cell-group>
+        <van-button wx:if="{{!projectDetail.isAppraise&&projectDetail.cUST_ID==userInfo.rowGuid}}" class="btn_bid"
+          color='#FA8072' bindtap="handleAppraise">确认评价</van-button>
+      </view>
+      <van-empty wx:else description="暂无中标人信息" />
+    </van-tab>
+  </van-tabs>
+  <view class="detail_footer" wx:if="{{activeStep!=4}}">
+    <van-button class="btn_bid" wx:if="{{projectDetail.cUST_ID==userInfo.rowGuid&&projectDetail.sTATUS_VALUE=='02'}}"
+      color='#FA8072' bindtap="handleToggleAction">托管佣金</van-button>
+    <van-button wx:if="{{projectDetail.sTATUS_VALUE=='00'&&projectDetail.cUST_ID!=userInfo.rowGuid&&!hasBidding}}"
+      class="btn_bid" color='#FA8072' bindtap="handleBid">
+      我要投标</van-button>
+
+    <!-- <van-button wx:if="{{projectDetail.sTATUS_VALUE=='00'}}" class="btn_bid" color='#FA8072' bindtap="handleBid">
+      我要投标</van-button> -->
+
+    <van-button
+      wx:if="{{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid&&userInfo.deposit<biddingRecord.pROJECT_AMT*0.1}}"
+      class="btn_bid" color='#FA8072' bindtap="handleAddDeposit">
+      补足保证金</van-button>
+
+    <!-- <van-button wx:if="{{biddingRecord&&biddingRecord.rowguid==userInfo.rowGuid}}" class="btn_bid" color='#FA8072'
+      bindtap="handleAddDeposit">
+      上传进度</van-button> -->
+  </view>
+
+  <van-action-sheet show="{{ showAction }}" title="酬劳托管" bind:close="handleToggleAction">
+    <view class="action_wrap">
+      <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
+        <van-cell-group inset>
+          <van-cell title="{{coupon.couponName?'您已选择:'+coupon.couponName:'选择优惠券'}}" is-link
+            url="/pages/coupon/coupon?type=chooseCoupon" />
+          <van-cell title="应付金额:" value="{{payAmount}}元" />
+          <van-cell title="余额支付(剩余{{userInfo.remainingSum||0}}元)" clickable data-name="1" bind:click="onRadioClick">
+            <van-radio slot="right-icon" name="1" checked-color="#FA8072" />
+          </van-cell>
+          <van-cell title="微信支付" clickable data-name="2" bind:click="onRadioClick">
+            <van-radio slot="right-icon" name="2" checked-color="#FA8072" />
+          </van-cell>
+        </van-cell-group>
+      </van-radio-group>
+      <van-button class="btn_pay" color='#FA8072' bindtap="handlePay">支付</van-button>
+    </view>
+  </van-action-sheet>
+</view>

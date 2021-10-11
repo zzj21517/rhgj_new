@@ -1,5 +1,27 @@
 // app.js
+import {
+  BASEURL
+} from './utils/host'
 App({
+  getUserInfo(uid) {
+    wx.request({
+      url: `${BASEURL}/peopleinfo/getUserInfo`,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }, //传在请求的header里
+      data: {
+        "param": {
+          uid,
+        }
+      },
+      success: (res) => {
+        if (res.statusCode == 200 && res.data.code == 200) {
+          this.globalData.userInfo = res.data.userInfo || {}
+        }
+      },
+    })
+  },
   onLaunch() {
     // 获取userInfo缓存
     const userInfo = wx.getStorageSync('userInfo') || {
@@ -7,7 +29,8 @@ App({
     }
     console.log(userInfo, 'uuu')
     if (userInfo.rowGuid) {
-      this.globalData.userInfo = userInfo
+      // this.globalData.userInfo = userInfo
+      this.getUserInfo(userInfo.rowGuid, this)
     }
 
     // 展示本地存储能力

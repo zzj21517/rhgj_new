@@ -1,6 +1,5 @@
-.my_header{
+.my_header {
   position: relative;
-  margin-bottom: 32rpx;
   padding-left: 60rpx;
   height: 230rpx;
   background-color: #FA8072;
@@ -8,21 +7,71 @@
   align-items: center;
 }
 
-.login_register{
+.my_engineer_header {
+  margin-bottom: 64rpx;
+}
+
+.login_register {
   margin-left: 20rpx;
   color: #fff;
   font-size: 36rpx;
   font-weight: bold;
 }
 
-.my_switch{
+
+.my_switch button {
   position: absolute;
   top: 32rpx;
   right: 32rpx;
 }
 
-.my_avatar{
+.my_avatar {
   width: 128rpx;
   height: 128rpx;
   border-radius: 50%;
 }
+
+.my_nickname {
+  margin-bottom: 12rpx;
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+}
+
+.my_level {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.header_tip {
+  z-index: 100;
+  position: absolute;
+  left: 32rpx;
+  right: 32rpx;
+  bottom: -40rpx;
+  padding: 0rpx 24rpx;
+  height: 80rpx;
+  background-image: linear-gradient(90deg, rgba(239, 207, 168, 0.99) 2%, #FAE7D2 100%);
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tip_left {
+  display: flex;
+  align-items: center;
+}
+
+.left_left {
+  margin-right: 24rpx;
+  font-size: 26rpx;
+  color: #915E09;
+}
+
+.left_right {
+  font-size: 24rpx;
+  color: #915E09;
+}
+
+.tip_btn {}

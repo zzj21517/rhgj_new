@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "信息维护",
+  "usingComponents": {
+    "custom-info":"/components/customInfo/index",
+    "engineer-person-info":"/components/engineerPersonInfo/index",
+    "engineer-team-info":"/components/engineerTeamInfo/index"
+  }
+}

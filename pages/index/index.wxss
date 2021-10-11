@@ -4,6 +4,7 @@
   height: 400rpx;
   background-image: linear-gradient(#FA8072, #FFF);
 }
+
 .weui-tabs-swiper {
   height: calc(100vh - 80rpx);
 }
@@ -46,18 +47,102 @@
   color: transparent;
 }
 
-.tab-content{
+.tab-content {
   margin: 32rpx;
   padding: 32rpx;
   border-radius: 16rpx;
   background-color: #fff;
 }
 
-.btn_fast button{
+.btn_fast button {
   margin-top: 32rpx;
   width: 100%;
 }
 
-.public_order_wrap{
+.public_project_wrap {
   position: relative;
+}
+
+.swiper {
+  margin-bottom: 8rpx;
+}
+
+#public_project {
+  margin-top: 8rpx;
+}
+
+.swiper_content {
+  height: 240px;
+}
+
+.swiper_item_img {
+  width: 100vw;
+}
+
+
+/* coupon */
+.coupon {
+  margin-bottom: 120rpx;
+}
+
+.coupon_item {
+  margin: 32rpx;
+  padding: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 6rpx;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.item_left {}
+
+.left_amount {
+  display: flex;
+  align-items: flex-end;
+}
+
+.amount_amount {
+  line-height: 25px;
+  font-size: 18px;
+  color: #FA8072;
+}
+
+.amount_unit {
+  margin-left: 4rpx;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.left_limit {
+  margin-top: 8rpx;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.middle_name {
+  line-height: 25px;
+  font-size: 14px;
+}
+
+.middle_expire {
+  margin-top: 8rpx;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.coupon_footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.footer_btn {
+  display: block;
+}
+
+.footer_btn button {
+  width: 100%;
 }

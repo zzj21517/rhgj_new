@@ -1,0 +1,24 @@
+<view class="public_project">
+  <van-dropdown-menu>
+    <van-dropdown-item id="item" title="{{ title1 }}">
+      <van-area area-list="{{ areaList }}" value="{{cityCode}}" columns-num="2" bind:confirm="handleConfirm" />
+    </van-dropdown-item>
+    <van-dropdown-item bind:change="handleChange" value="{{ value }}" options="{{ option2 }}" />
+  </van-dropdown-menu>
+
+  <view class="project_list">
+    <view class="list_item" wx:for="{{productList}}" wx:key="index" bindtap="handleDetail" data-info="{{item}}">
+      <view class="item_title">
+        {{item.cREGIE_ID?item.cREGIE_ID+"-":''}}{{item.pROJECT_CLASSIFY?item.pROJECT_CLASSIFY:''}}
+        <view class="title_time" >{{item.dATATIME}}</view>
+      </view>
+      <view class="item_desc">{{item.pROJECT_DESC}}</view>
+      <view class="item_tags">
+        <!-- <van-tag wx:if="{{item.eNGINEER_AMT}}" class="tags_tag" color="#FA8072" text-color="#fff">¥{{item.eNGINEER_AMT}}
+        </van-tag> -->
+        <van-tag wx:if="{{item.sTATUS}}" class="tags_tag" color="#FA8072" text-color="#fff">{{item.sTATUS}}</van-tag>
+        <van-tag wx:if="{{item.fINISH_DATE}}" class="tags_tag" color="#FA8072" plain>结束时间:{{item.fINISH_DATE}}</van-tag>
+      </view>
+    </view>
+  </view>
+</view>

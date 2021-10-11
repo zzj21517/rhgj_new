@@ -1,0 +1,22 @@
+<view class="reward_invest">
+  <view class="invest_had">
+    <text>已托管项目酬劳金额:</text>
+    <text class="had_amount" >￥{{userInfo.reward||0}}</text>
+  </view>
+  <van-cell-group class="invest_group">
+    <van-field model:value="{{ amount }}" type='digit' required clearable label="金额" placeholder="请输入金额" />
+  </van-cell-group>
+  <van-button bindtap="handleInvest" class="invest_btn" color="#FA8072">充值</van-button>
+
+  <view class="invest_tip">
+    <view class="tip_title">酬劳充值说明:</view>
+    <view class="tip_content">
+      <view>
+        1.项目酬劳充值是由平台人员发布项目后，提供给委托人付款的唯一入口。
+      </view>
+      <view>
+        2.委托人在此输入与平台客服人员约定的金额后，在此输入相应金额，点击充值按钮，支付相关费用。
+      </view>
+    </view>
+  </view>
+</view>

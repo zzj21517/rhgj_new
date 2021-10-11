@@ -1,18 +1,26 @@
-// components/publicPage/index.js
+// pages/engineerInfo/engineerInfo.js
+const app = getApp()
+import {
+  request
+} from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    uid: '',
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      uid: options.uid
+    })
+    this.getUserInfo()
   },
 
   /**
@@ -21,7 +29,22 @@ Page({
   onReady: function () {
 
   },
-
+  getUserInfo() {
+    const {
+      uid
+    } = this.data
+    request('/peopleinfo/getUserInfo', {
+        uid
+      },
+      (data) => {
+        if (data.code == 200) {
+          this.setData({
+            userInfo: data.userInfo
+          })
+        }
+      }
+    )
+  },
   /**
    * 生命周期函数--监听页面显示
    */

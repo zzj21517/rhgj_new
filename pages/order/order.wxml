@@ -1,8 +1,4 @@
-<view class="container order">
-  <van-dropdown-menu>
-    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-  </van-dropdown-menu>
-
-  <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
+<view  class="container order">
+    <custom-order wx:if="{{userInfo.userFlag}}"  id="custom_order" ></custom-order>
+    <engineer-order wx:else id="engineer_order" ></engineer-order>
 </view>

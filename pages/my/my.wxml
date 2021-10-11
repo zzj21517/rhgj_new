@@ -1,32 +1,66 @@
 <view class="container my">
-  <view class="my_header">
+  <view class="my_header {{userInfo.userFlag==0?'my_engineer_header':''}}">
     <icon wx:if="{{!userInfo.avatarUrl}}" class="iconfont icon_myheader"></icon>
     <image class="my_avatar" wx:else src="{{userInfo.avatarUrl}}"></image>
     <view wx:if="{{!userInfo.nickName}}" class="login_register" bindtap="switchLogin">登录/注册</view>
-    <view wx:else class="login_register">{{userInfo.nickName}}</view>
+    <view wx:else class="login_register">
+      <view class="my_nickname">
+        {{userInfo.nickName}}
+        <van-button bindtap="handleSignIn" size="mini" color='#FA8072' style="margin-left: 8rpx;" plain>签到</van-button>
+      </view>
+      <view wx:if="{{userInfo.userFlag==0}}" class="my_level">
+        等级:{{levelName}} <text style="margin-left: 8rpx;">积分:{{userInfo.engineerIntegralAmount||0}}</text>
+      </view>
+      <view wx:else class="my_level">
+        <text style="margin-left: 8rpx;">积分:{{userInfo.customIntegralAmount||0}}</text>
+      </view>
+    </view>
     <van-button bindtap="handleSwitch" wx:if="{{userFlag}}"
       color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" class="my_switch" size="small">切换至工程师
     </van-button>
     <van-button bindtap="handleSwitch" wx:else color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))"
       class="my_switch" size="small">切换至客户</van-button>
+
+    <view wx:if="{{userInfo.userFlag==0&&userInfo.level&&isExpire}}" class="header_tip">
+      <view class="tip_left">
+        <view class="left_left">专属VIP会员</view>
+        <view class="left_right">有效期至{{userInfo.expireTime}}</view>
+      </view>
+    </view>
+    <view wx:if="{{userInfo.userFlag==0&&!userInfo.level&&isExpire}}" class="header_tip">
+      <view class="tip_left">
+        <view class="left_left">开通VIP会员</view>
+        <view class="left_right">投标抽成更优惠</view>
+      </view>
+      <van-button bindtap="handleOpen" class="tip_btn" size="mini" color="#FA8072">立即开通</van-button>
+    </view>
   </view>
 
   <van-cell-group inset wx:if="{{userFlag}}">
-    <van-cell title="酬劳托管" is-link />
-    <van-cell title="待付款" is-link />
-    <van-cell title="待评价" is-link />
+    <van-cell data-path='/pages/rewardInvest/rewardInvest' title="酬劳托管" value="已托管金额￥{{userInfo.reward||0}}" is-link
+      bindtap="handleGo" />
+    <!-- <van-cell title="待付款" is-link url="/pages/awaitPayment/awaitPayment" /> -->
+    <van-cell data-path='/pages/luckyDraw/luckyDraw' title="抽奖" is-link bindtap="handleGo" />
+    <van-cell data-path='/pages/appraise/appraise' title="待评价" is-link bindtap="handleGo" />
+    <van-cell data-path='/pages/set/set' title="设置" is-link bindtap="handleGo" />
+    <van-cell data-path='/pages/coupon/coupon' title="券包" is-link bindtap="handleGo" />
     <van-cell bindtap="handleCustomerServer" title="官方客服" is-link />
     <van-cell bindtap="handleShare" title="邀请" is-link />
+    <van-cell data-path='/pages/integral/integral' title="积分兑换" is-link bindtap="handleGo" />
+    <van-cell data-path='/pages/infoMaintenance/infoMaintenance' title="信息维护" is-link bindtap="handleGo" />
   </van-cell-group>
 
   <van-cell-group inset wx:else>
-    <van-cell title="券包" is-link />
-    <van-cell title="红包" is-link />
-    <van-cell title="会员" is-link url="/pages/member/member" />
-    <van-cell title="设置" is-link url="/pages/set/set" />
-    <van-cell title="邀请有赏" is-link />
-    <van-cell title="积分兑换" is-link />
-    <van-cell title="我的店铺" is-link />
+    <van-cell data-path="/pages/deposit/deposit" title="保证金充值" value="账户保证金￥{{userInfo.deposit||0}}" is-link
+      bindtap="handleGo" />
+    <van-cell data-path="/pages/coupon/coupon" title="券包" is-link bindtap="handleGo" />
+    <van-cell data-path="/pages/member/member" title="会员" is-link bindtap="handleGo" />
+    <van-cell data-path="/pages/luckyDraw/luckyDraw" title="抽奖" is-link bindtap="handleGo" />
+    <van-cell data-path="/pages/set/set" title="设置" is-link bindtap="handleGo" />
+    <van-cell bindtap="handleShare" title="邀请有赏" is-link />
+    <van-cell data-path="/pages/integral/integral" title="积分兑换" is-link bindtap="handleGo" />
+    <van-cell data-path="/pages/infoMaintenance/infoMaintenance" title="信息维护" is-link bindtap="handleGo" />
+    <!-- <van-cell title="我的店铺" is-link /> -->
   </van-cell-group>
 
   <!-- 分享 -->

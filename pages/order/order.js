@@ -2,59 +2,21 @@
 import {
   request
 } from '../../utils/request'
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    option1: [{
-        text: '中标项目',
-        value: 0
-      },
-      {
-        text: '已投项目',
-        value: 1
-      },
-      {
-        text: '完成项目',
-        value: 2
-      },
-    ],
-    option2: [{
-        text: '默认排序',
-        value: 'a'
-      },
-      {
-        text: '时间排序',
-        value: 'b'
-      },
-      {
-        text: '金额排序',
-        value: 'c'
-      },
-    ],
-    value1: 0,
-    value2: 'a',
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBanner()
-  },
 
-  // 获取banner图
-  getBanner() {
-    let that = this;
-    request('/icon/getIcon', {
-      "iconThem": "banner"
-    }, function (data) {
-      that.setData({
-        imgUrls1: data
-      })
-    })
   },
 
   /**
@@ -68,7 +30,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const userInfo = app.globalData.userInfo
+    // if (!userInfo.rowGuid) {
+    //   return wx.navigateTo({
+    //     url: '/pages/login/login',
+    //   })
+    // }
+    this.setData({
+      userInfo
+    })
   },
 
   /**
@@ -85,24 +55,33 @@ Page({
 
   },
 
+
+  getChildComponent: function () {
+    const child = this.selectComponent('#custom_order');
+    return child
+  },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh() {
+    const publicProjectCom = this.getChildComponent()
+    if (publicProjectCom) {
+      publicProjectCom.setData({
+        pageNum: 1
+      })
+      publicProjectCom.getProductList()
+    }
+    return true
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    const publicProjectCom = this.getChildComponent()
+    if (publicProjectCom) {
+      publicProjectCom.getProductList(true)
+    }
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
